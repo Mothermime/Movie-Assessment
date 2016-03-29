@@ -16,7 +16,7 @@ namespace MoviesAssessmentJane
 
         public Database()
         {
-            string connectionString =
+            string connectionString =  
                 @"Data Source= LAPTOP\sqlexpress;Initial Catalog=VBMoviesFullData;Integrated Security=True";
             Connection.ConnectionString = connectionString;
             Command.Connection = Connection;
