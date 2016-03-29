@@ -62,6 +62,7 @@
             this.tbxIssueDate = new System.Windows.Forms.TextBox();
             this.tbx = new System.Windows.Forms.TextBox();
             this.btnClear = new System.Windows.Forms.Button();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.tabCustomers.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCustomer)).BeginInit();
@@ -69,6 +70,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvRentedMovies)).BeginInit();
             this.tabPage3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvMovies)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // tabCustomers
@@ -100,6 +102,7 @@
             this.dgvCustomer.Name = "dgvCustomer";
             this.dgvCustomer.Size = new System.Drawing.Size(624, 282);
             this.dgvCustomer.TabIndex = 0;
+            this.dgvCustomer.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvCustomer_CellContentClick);
             // 
             // tabPage2
             // 
@@ -227,6 +230,7 @@
             this.btnUpdateCust.TabIndex = 11;
             this.btnUpdateCust.Text = "Update Customer";
             this.btnUpdateCust.UseVisualStyleBackColor = true;
+            this.btnUpdateCust.Click += new System.EventHandler(this.btnUpdateCust_Click);
             // 
             // btnDeleteCust
             // 
@@ -359,11 +363,20 @@
             this.btnClear.UseVisualStyleBackColor = true;
             this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
             // 
+            // pictureBox1
+            // 
+            this.pictureBox1.BackgroundImage = global::MoviesAssessmentJane.Properties.Resources.word_of_mouth_amsterdam_movies_thumb_620x400_39234;
+            this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pictureBox1.Location = new System.Drawing.Point(0, 1);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(1343, 711);
+            this.pictureBox1.TabIndex = 28;
+            this.pictureBox1.TabStop = false;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackgroundImage = global::MoviesAssessmentJane.Properties.Resources.word_of_mouth_amsterdam_movies_thumb_620x400_39234;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(1335, 711);
             this.Controls.Add(this.btnClear);
@@ -394,8 +407,10 @@
             this.Controls.Add(this.tbxLN);
             this.Controls.Add(this.tbxFN);
             this.Controls.Add(this.tabCustomers);
+            this.Controls.Add(this.pictureBox1);
             this.Name = "Form1";
             this.Text = "Form1";
+            this.Load += new System.EventHandler(this.Form1_Load);
             this.tabCustomers.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvCustomer)).EndInit();
@@ -403,6 +418,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvRentedMovies)).EndInit();
             this.tabPage3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvMovies)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -444,6 +460,7 @@
         private System.Windows.Forms.TextBox tbxIssueDate;
         private System.Windows.Forms.TextBox tbx;
         private System.Windows.Forms.Button btnClear;
+        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }
 

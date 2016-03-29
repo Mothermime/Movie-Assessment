@@ -65,11 +65,12 @@ namespace MoviesAssessmentJane
                 }
                 else if (AddorUpdate == "Update")
                 {
-                    var myCommand = new SqlCommand("Update Owner set FirstName = @Firstname, LastName = @LastName, Address = @Address, Phone = @Phone where CustID = @CustID", Connection);
+                    var myCommand = new SqlCommand("Update Customer set FirstName = @Firstname, LastName = @LastName, Address = @Address, Phone = @Phone where CustID = @CustID", Connection);
                     myCommand.Parameters.AddWithValue("Firstname", Firstname);
                     myCommand.Parameters.AddWithValue("Lastname", Lastname);
                     myCommand.Parameters.AddWithValue("Address", Address);
                     myCommand.Parameters.AddWithValue("Phone", Phone);
+                    myCommand.Parameters.AddWithValue("CustID", CustID);
 
                     Connection.Open();
                     myCommand.ExecuteNonQuery();
