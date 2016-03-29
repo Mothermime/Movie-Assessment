@@ -36,7 +36,6 @@ namespace MoviesAssessmentJane
             {
                 MessageBox.Show(ex.Message);
             }
-           
         }
 
         private void DisplayDataGridViewMovie()
@@ -50,12 +49,29 @@ namespace MoviesAssessmentJane
             catch (Exception ex )
             {
                 MessageBox.Show(ex.Message);
-
             }
         }
-       
-            
+
+        private void btnAddCustomer_Click(object sender, EventArgs e)
+        {
+            string result = null;
+
+            if ((tbxFN.Text != string.Empty)&& (tbxLN.Text != string.Empty) && (tbxAddress.Text != string.Empty) && (tbxPhone.Text != string.Empty ))
+            {
+                try
+                {
+                    result = myDatabase.InsertorUpdateCustomer(tbxFN.Text, tbxLN.Text, tbxAddress.Text, tbxPhone.Text, tbxCustID.Text,
+                        "Add");
+                    MessageBox.Show(tbxFN.Text + " Added." + result);
+                }
+                catch (Exception a)
+                {
+
+                    MessageBox.Show((a.Message));
+                }
+            }
         }
+    }
 
 
     }

@@ -61,6 +61,7 @@
             this.lblCost = new System.Windows.Forms.Label();
             this.tbxIssueDate = new System.Windows.Forms.TextBox();
             this.tbx = new System.Windows.Forms.TextBox();
+            this.btnClear = new System.Windows.Forms.Button();
             this.tabCustomers.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCustomer)).BeginInit();
@@ -106,7 +107,7 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(636, 236);
+            this.tabPage2.Size = new System.Drawing.Size(636, 291);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Rented Movies";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -209,6 +210,7 @@
             this.btnAddCustomer.TabIndex = 9;
             this.btnAddCustomer.Text = " Add Customer";
             this.btnAddCustomer.UseVisualStyleBackColor = true;
+            this.btnAddCustomer.Click += new System.EventHandler(this.btnAddCustomer_Click);
             // 
             // tbxCustID
             // 
@@ -347,6 +349,15 @@
             this.tbx.Size = new System.Drawing.Size(139, 20);
             this.tbx.TabIndex = 26;
             // 
+            // btnClear
+            // 
+            this.btnClear.Location = new System.Drawing.Point(15, 572);
+            this.btnClear.Name = "btnClear";
+            this.btnClear.Size = new System.Drawing.Size(92, 58);
+            this.btnClear.TabIndex = 27;
+            this.btnClear.Text = "button1";
+            this.btnClear.UseVisualStyleBackColor = true;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -354,6 +365,7 @@
             this.BackgroundImage = global::MoviesAssessmentJane.Properties.Resources.word_of_mouth_amsterdam_movies_thumb_620x400_39234;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(1335, 711);
+            this.Controls.Add(this.btnClear);
             this.Controls.Add(this.tbx);
             this.Controls.Add(this.tbxIssueDate);
             this.Controls.Add(this.lblCost);
@@ -430,6 +442,7 @@
         private System.Windows.Forms.Label lblCost;
         private System.Windows.Forms.TextBox tbxIssueDate;
         private System.Windows.Forms.TextBox tbx;
+        private System.Windows.Forms.Button btnClear;
     }
 }
 
