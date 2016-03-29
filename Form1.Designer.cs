@@ -353,10 +353,11 @@
             // 
             this.btnClear.Location = new System.Drawing.Point(15, 572);
             this.btnClear.Name = "btnClear";
-            this.btnClear.Size = new System.Drawing.Size(92, 58);
+            this.btnClear.Size = new System.Drawing.Size(92, 34);
             this.btnClear.TabIndex = 27;
-            this.btnClear.Text = "button1";
+            this.btnClear.Text = "Clear text boxes";
             this.btnClear.UseVisualStyleBackColor = true;
+            this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
             // 
             // Form1
             // 

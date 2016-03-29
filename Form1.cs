@@ -69,6 +69,31 @@ namespace MoviesAssessmentJane
 
                     MessageBox.Show((a.Message));
                 }
+                DisplayDataGridViewCustomer();
+                tbxFN.Text = "";
+                tbxLN.Text = "";
+                tbxAddress.Text = "";
+                tbxPhone.Text = "";
+            }
+            else
+            {
+                MessageBox.Show("Please enter first name, last name, address and phone.");
+            }
+        }
+
+        private void btnClear_Click(object sender, EventArgs e)
+        {
+            ClearAllTextBoxes(this);
+        }
+
+        public void ClearAllTextBoxes(Control root)
+        {
+            foreach ( Control ctrl in root.Controls)
+            {
+                if (ctrl is TextBox)
+                {
+                    ((TextBox) ctrl).Text = String.Empty;
+                }
             }
         }
     }
