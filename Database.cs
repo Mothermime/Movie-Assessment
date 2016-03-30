@@ -45,7 +45,7 @@ namespace MoviesAssessmentJane
                 Connection.Close();
             }
             return dt;
-    }
+        }
         public string InsertorUpdateCustomer(string Firstname, string Lastname, string Address, string Phone, string CustID, string AddorUpdate )
         {
             try
@@ -75,18 +75,107 @@ namespace MoviesAssessmentJane
                     Connection.Open();
                     myCommand.ExecuteNonQuery();
                     Connection.Close();
-                }
+                   
+                } return " successfuly.";
                
             }
             catch (Exception a)
             {
-                
                Connection.Close();
                 return " has failed with " + a;
             }
             return "";
         }
 
-       
+        public string DeleteCustomer(string CustID)
+        {
+            if (!object.ReferenceEquals(CustID, string.Empty))
+            {
+                var myCommand = new SqlCommand();
+                myCommand = new SqlCommand("Delete from Customer where CustID = @CustID");
+
+                myCommand.Connection = Connection;
+                myCommand.Parameters.AddWithValue("CustID", CustID);
+
+                Connection.Open();
+                myCommand.ExecuteNonQuery();
+                Connection.Close();
+                return "Deletion successful.";
+            }
+            else
+            {
+                { Connection.Close();}
+                return "Deletion failed.";
+            }
+        }
+
+
+        public string InsertorUpdateMovie(string Rating, string Title, string Year, string Plot, string Genre, string MovieID, string AddorUpdate)
+        {
+            try
+            {
+                if (AddorUpdate == "Add")
+                {
+                    var myCommand = new SqlCommand("Insert into Movies (Title, Year, Rating, Plot, Genre)" + "Values (@Title, @Year, @Rating, @Plot, @Genre)", Connection);
+
+                    myCommand.Parameters.AddWithValue("Title", Title);
+                    myCommand.Parameters.AddWithValue("Year", Year);
+                    myCommand.Parameters.AddWithValue("Rating", Rating);
+                    myCommand.Parameters.AddWithValue("Plot", Plot);
+                    myCommand.Parameters.AddWithValue("Genre", Genre);
+
+                    Connection.Open();
+                    myCommand.ExecuteNonQuery();
+                    Connection.Close();
+                }
+                else if (AddorUpdate == "Update")
+                {
+                    var myCommand = new SqlCommand("Update Movie set Title = @Title, Year = @Year,  Rating = @ Rating, Plot = @Plot, Genre = @Genre where MovieID = @MovieID", Connection);
+                    myCommand.Parameters.AddWithValue("Title", Title);
+                    myCommand.Parameters.AddWithValue("Year", Year);
+                    myCommand.Parameters.AddWithValue("Rating", Rating);
+                    myCommand.Parameters.AddWithValue("Plot", Plot);
+                    myCommand.Parameters.AddWithValue("Genre", Genre);
+                    myCommand.Parameters.AddWithValue("MovieID", MovieID);
+
+                    Connection.Open();
+                    myCommand.ExecuteNonQuery();
+                    Connection.Close();
+
+                }
+                return " successfuly.";
+
+            }
+            catch (Exception b)
+            {
+                Connection.Close();
+                return " has failed with " + b;
+            }
+            return "";
+        }
+
+        public string DeleteMovie(string MovieID)
+        {
+            if (!object.ReferenceEquals(MovieID, string.Empty))
+            {
+                var myCommand = new SqlCommand();
+                myCommand = new SqlCommand("Delete from Customer where Movie = @MovieID");
+
+                myCommand.Connection = Connection;
+                myCommand.Parameters.AddWithValue("MovieID", MovieID);
+
+                Connection.Open();
+                myCommand.ExecuteNonQuery();
+                Connection.Close();
+                return "Deletion successful.";
+            }
+            else
+            {
+                { Connection.Close(); }
+                return "Deletion failed.";
+            }
+        }
+
+
     }
 }

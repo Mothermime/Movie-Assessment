@@ -85,7 +85,7 @@ namespace MoviesAssessmentJane
                 {
                     result = myDatabase.InsertorUpdateCustomer(tbxFN.Text, tbxLN.Text, tbxAddress.Text, tbxPhone.Text, tbxCustID.Text,
                         "Add");
-                    MessageBox.Show(tbxFN.Text + " Added." + result);
+                    MessageBox.Show(tbxFN.Text + "added " + result);
                 }
                 catch (Exception a)
                 {
@@ -120,11 +120,6 @@ namespace MoviesAssessmentJane
             }
         }
 
-        private void Form1_Load(object sender, EventArgs e)
-        {
-
-        }
-
         private void btnUpdateCust_Click(object sender, EventArgs e)
         {
             string result = null;
@@ -135,7 +130,7 @@ namespace MoviesAssessmentJane
                 {
                     result = myDatabase.InsertorUpdateCustomer(tbxFN.Text, tbxLN.Text, tbxAddress.Text, tbxPhone.Text, tbxCustID.Text,
                         "Update");
-                    MessageBox.Show(tbxFN.Text + " Updated." + result);
+                    MessageBox.Show(tbxFN.Text + " updated" + result);
                 }
                 catch (Exception a)
                 {
@@ -153,6 +148,56 @@ namespace MoviesAssessmentJane
                 MessageBox.Show("Are these the changes you wish to make?");
             }
         }
+
+        private void btnDeleteCust_Click(object sender, EventArgs e)
+        {
+            string CustID = tbxCustID.Text;
+            //string result = null;
+            MessageBox.Show(  myDatabase.DeleteCustomer(CustID));
+            DisplayDataGridViewCustomer();
+            ClearAllTextBoxes(this);
+
+        }
+
+        private void btnAddMovie_Click(object sender, EventArgs e)
+        {
+            string result = null;
+
+            if ((tbxTitle.Text != string.Empty) && (tbxYear.Text != string.Empty) && (tbxPlot.Text != string.Empty) && (tbxGenre.Text != string.Empty)&& (tbxRating.Text != String.Empty))
+            {
+                try
+                {
+                    result = myDatabase.InsertorUpdateMovie(tbxTitle.Text, tbxYear.Text, tbxPlot.Text, tbxGenre.Text, tbxRating.Text, tbxMovieID.Text,
+                        "Add");
+                    MessageBox.Show(tbxTitle.Text + " added" + result);
+                }
+                catch (Exception a)
+                {
+
+                    MessageBox.Show((a.Message));
+                }
+                DisplayDataGridViewMovie();
+                tbxTitle.Text = "";
+                tbxYear.Text = "";
+                tbxPlot.Text = "";
+                tbxGenre.Text = "";
+                tbxRating.Text = "";
+                tbxMovieID.Text = "";
+            }
+            else
+            {
+                MessageBox.Show("Are these the changes you wish to make?");
+            }
+        }
+        private void btnDelMovie_Click(object sender, EventArgs e)
+        {
+            string MovieID = tbxMovieID.Text;
+            //string result = null;
+            MessageBox.Show(myDatabase.DeleteCustomer(MovieID));
+            DisplayDataGridViewCustomer();
+            ClearAllTextBoxes(this);
+        }
+
     }
 
 
