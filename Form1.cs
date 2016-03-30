@@ -158,18 +158,39 @@ namespace MoviesAssessmentJane
             ClearAllTextBoxes(this);
 
         }
+        private void dgvMovies_CellContentClick_1(object sender, DataGridViewCellEventArgs e)
+        {
+            int MovieID = 0;
 
+            try
+            {
+                MovieID = (int)dgvMovies.Rows[e.RowIndex].Cells[0].Value;
+                tbxRating.Text = dgvMovies.Rows[e.RowIndex].Cells[1].Value.ToString();
+                tbxTitle.Text = dgvMovies.Rows[e.RowIndex].Cells[2].Value.ToString();
+                tbxYear.Text = dgvMovies.Rows[e.RowIndex].Cells[3].Value.ToString();
+                tbxPlot.Text = dgvMovies.Rows[e.RowIndex].Cells[6].Value.ToString();
+                tbxGenre.Text = dgvMovies.Rows[e.RowIndex].Cells[7].Value.ToString();
+                if (e.RowIndex >= 0)
+                {
+                    tbxMovieID.Text = MovieID.ToString();
+                }
+            }
+
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
         private void btnAddMovie_Click(object sender, EventArgs e)
         {
             string result = null;
 
-            if ((tbxTitle.Text != string.Empty) && (tbxYear.Text != string.Empty) && (tbxPlot.Text != string.Empty) && (tbxGenre.Text != string.Empty)&& (tbxRating.Text != String.Empty))
+            if ((tbxRating.Text != String.Empty) && (tbxTitle.Text != string.Empty) && (tbxYear.Text != string.Empty) && (tbxPlot.Text != string.Empty) && (tbxGenre.Text != string.Empty))
             {
                 try
                 {
-                    result = myDatabase.InsertorUpdateMovie(tbxTitle.Text, tbxYear.Text, tbxPlot.Text, tbxGenre.Text, tbxRating.Text, tbxMovieID.Text,
-                        "Add");
-                    MessageBox.Show(tbxTitle.Text + " added" + result);
+                    result = myDatabase.InsertorUpdateMovie( tbxRating.Text, tbxTitle.Text, tbxYear.Text, tbxPlot.Text, tbxGenre.Text, tbxMovieID.Text, "Add");
+                    MessageBox.Show(tbxTitle.Text + " added " + result);
                 }
                 catch (Exception a)
                 {
@@ -177,27 +198,58 @@ namespace MoviesAssessmentJane
                     MessageBox.Show((a.Message));
                 }
                 DisplayDataGridViewMovie();
+                tbxMovieID.Text = "";
+                tbxRating.Text = "";
                 tbxTitle.Text = "";
                 tbxYear.Text = "";
                 tbxPlot.Text = "";
                 tbxGenre.Text = "";
-                tbxRating.Text = "";
-                tbxMovieID.Text = "";
+               
             }
             else
             {
-                MessageBox.Show("Are these the changes you wish to make?");
+                MessageBox.Show("Please fill in Rating, Title, Year, Plot and Genre boxes.");
             }
         }
         private void btnDelMovie_Click(object sender, EventArgs e)
         {
             string MovieID = tbxMovieID.Text;
             //string result = null;
-            MessageBox.Show(myDatabase.DeleteCustomer(MovieID));
-            DisplayDataGridViewCustomer();
+            MessageBox.Show(myDatabase.DeleteMovie(MovieID));
+            DisplayDataGridViewMovie();
             ClearAllTextBoxes(this);
         }
 
+        private void btnUpdateMovie_Click(object sender, EventArgs e)
+        {
+            string result = null;
+
+            if ((tbxRating.Text != String.Empty) && (tbxTitle.Text != string.Empty) && (tbxYear.Text != string.Empty) && (tbxPlot.Text != string.Empty) && (tbxGenre.Text != string.Empty))
+            {
+                try
+                {
+                    result = myDatabase.InsertorUpdateMovie(tbxRating.Text, tbxTitle.Text, tbxYear.Text, tbxPlot.Text, tbxGenre.Text, tbxMovieID.Text, "Update");
+                    MessageBox.Show(tbxTitle.Text + " updated " + result);
+                }
+                catch (Exception a)
+                {
+
+                    MessageBox.Show((a.Message));
+                }
+                DisplayDataGridViewMovie();
+                tbxMovieID.Text = "";
+                tbxRating.Text = "";
+                tbxTitle.Text = "";
+                tbxYear.Text = "";
+                tbxPlot.Text = "";
+                tbxGenre.Text = "";
+
+            }
+            else
+            {
+                MessageBox.Show("Are these the changes you wish to make?");
+            }
+        }
     }
 
 

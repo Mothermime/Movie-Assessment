@@ -104,7 +104,7 @@ namespace MoviesAssessmentJane
             }
             else
             {
-                { Connection.Close();}
+                 Connection.Close();
                 return "Deletion failed.";
             }
         }
@@ -116,11 +116,11 @@ namespace MoviesAssessmentJane
             {
                 if (AddorUpdate == "Add")
                 {
-                    var myCommand = new SqlCommand("Insert into Movies (Title, Year, Rating, Plot, Genre)" + "Values (@Title, @Year, @Rating, @Plot, @Genre)", Connection);
+                    var myCommand = new SqlCommand("Insert into Movies (Rating, Title, Year,  Plot, Genre)" + "Values (@Rating, @Title, @Year, @Plot, @Genre)", Connection);
 
+                    myCommand.Parameters.AddWithValue("Rating", Rating);
                     myCommand.Parameters.AddWithValue("Title", Title);
                     myCommand.Parameters.AddWithValue("Year", Year);
-                    myCommand.Parameters.AddWithValue("Rating", Rating);
                     myCommand.Parameters.AddWithValue("Plot", Plot);
                     myCommand.Parameters.AddWithValue("Genre", Genre);
 
@@ -130,10 +130,11 @@ namespace MoviesAssessmentJane
                 }
                 else if (AddorUpdate == "Update")
                 {
-                    var myCommand = new SqlCommand("Update Movie set Title = @Title, Year = @Year,  Rating = @ Rating, Plot = @Plot, Genre = @Genre where MovieID = @MovieID", Connection);
+                    var myCommand = new SqlCommand("Update Movies set Rating = @Rating, Title = @Title, Year = @Year,  Plot = @Plot, Genre = @Genre where MovieID = @MovieID", Connection);
+
+                    myCommand.Parameters.AddWithValue("Rating", Rating);
                     myCommand.Parameters.AddWithValue("Title", Title);
                     myCommand.Parameters.AddWithValue("Year", Year);
-                    myCommand.Parameters.AddWithValue("Rating", Rating);
                     myCommand.Parameters.AddWithValue("Plot", Plot);
                     myCommand.Parameters.AddWithValue("Genre", Genre);
                     myCommand.Parameters.AddWithValue("MovieID", MovieID);
@@ -159,7 +160,7 @@ namespace MoviesAssessmentJane
             if (!object.ReferenceEquals(MovieID, string.Empty))
             {
                 var myCommand = new SqlCommand();
-                myCommand = new SqlCommand("Delete from Customer where Movie = @MovieID");
+                myCommand = new SqlCommand("Delete from Movies where MovieID = @MovieID");
 
                 myCommand.Connection = Connection;
                 myCommand.Parameters.AddWithValue("MovieID", MovieID);
@@ -171,7 +172,7 @@ namespace MoviesAssessmentJane
             }
             else
             {
-                { Connection.Close(); }
+                 Connection.Close(); 
                 return "Deletion failed.";
             }
         }

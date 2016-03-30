@@ -65,6 +65,8 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.tbxPlot = new System.Windows.Forms.TextBox();
             this.tbxRating = new System.Windows.Forms.TextBox();
+            this.lblPlot = new System.Windows.Forms.Label();
+            this.Rating = new System.Windows.Forms.Label();
             this.tabCustomers.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCustomer)).BeginInit();
@@ -83,7 +85,7 @@
             this.tabCustomers.Location = new System.Drawing.Point(12, 57);
             this.tabCustomers.Name = "tabCustomers";
             this.tabCustomers.SelectedIndex = 0;
-            this.tabCustomers.Size = new System.Drawing.Size(644, 317);
+            this.tabCustomers.Size = new System.Drawing.Size(740, 317);
             this.tabCustomers.TabIndex = 0;
             // 
             // tabPage1
@@ -92,7 +94,7 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(636, 291);
+            this.tabPage1.Size = new System.Drawing.Size(732, 291);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Customers";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -112,7 +114,7 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(636, 291);
+            this.tabPage2.Size = new System.Drawing.Size(732, 291);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Rented Movies";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -130,7 +132,7 @@
             this.tabPage3.Controls.Add(this.dgvMovies);
             this.tabPage3.Location = new System.Drawing.Point(4, 22);
             this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Size = new System.Drawing.Size(636, 291);
+            this.tabPage3.Size = new System.Drawing.Size(732, 291);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Movies";
             this.tabPage3.UseVisualStyleBackColor = true;
@@ -138,10 +140,11 @@
             // dgvMovies
             // 
             this.dgvMovies.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvMovies.Location = new System.Drawing.Point(3, 3);
+            this.dgvMovies.Location = new System.Drawing.Point(15, 0);
             this.dgvMovies.Name = "dgvMovies";
             this.dgvMovies.Size = new System.Drawing.Size(630, 285);
             this.dgvMovies.TabIndex = 0;
+            this.dgvMovies.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvMovies_CellContentClick_1);
             // 
             // tbxFN
             // 
@@ -266,12 +269,13 @@
             // 
             // btnUpdateMovie
             // 
-            this.btnUpdateMovie.Location = new System.Drawing.Point(118, 500);
+            this.btnUpdateMovie.Location = new System.Drawing.Point(15, 530);
             this.btnUpdateMovie.Name = "btnUpdateMovie";
             this.btnUpdateMovie.Size = new System.Drawing.Size(96, 23);
             this.btnUpdateMovie.TabIndex = 15;
             this.btnUpdateMovie.Text = "Update Movie";
             this.btnUpdateMovie.UseVisualStyleBackColor = true;
+            this.btnUpdateMovie.Click += new System.EventHandler(this.btnUpdateMovie_Click);
             // 
             // tbxMovieID
             // 
@@ -380,17 +384,37 @@
             // 
             // tbxPlot
             // 
-            this.tbxPlot.Location = new System.Drawing.Point(311, 503);
+            this.tbxPlot.Location = new System.Drawing.Point(155, 508);
+            this.tbxPlot.Multiline = true;
             this.tbxPlot.Name = "tbxPlot";
-            this.tbxPlot.Size = new System.Drawing.Size(107, 20);
+            this.tbxPlot.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+            this.tbxPlot.Size = new System.Drawing.Size(207, 20);
             this.tbxPlot.TabIndex = 29;
             // 
             // tbxRating
             // 
-            this.tbxRating.Location = new System.Drawing.Point(441, 508);
+            this.tbxRating.Location = new System.Drawing.Point(389, 508);
             this.tbxRating.Name = "tbxRating";
             this.tbxRating.Size = new System.Drawing.Size(42, 20);
             this.tbxRating.TabIndex = 30;
+            // 
+            // lblPlot
+            // 
+            this.lblPlot.AutoSize = true;
+            this.lblPlot.Location = new System.Drawing.Point(158, 492);
+            this.lblPlot.Name = "lblPlot";
+            this.lblPlot.Size = new System.Drawing.Size(25, 13);
+            this.lblPlot.TabIndex = 32;
+            this.lblPlot.Text = "Plot";
+            // 
+            // Rating
+            // 
+            this.Rating.AutoSize = true;
+            this.Rating.Location = new System.Drawing.Point(386, 492);
+            this.Rating.Name = "Rating";
+            this.Rating.Size = new System.Drawing.Size(38, 13);
+            this.Rating.TabIndex = 33;
+            this.Rating.Text = "Rating";
             // 
             // Form1
             // 
@@ -398,6 +422,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(1335, 711);
+            this.Controls.Add(this.Rating);
+            this.Controls.Add(this.lblPlot);
             this.Controls.Add(this.tbxRating);
             this.Controls.Add(this.tbxPlot);
             this.Controls.Add(this.btnClear);
@@ -483,6 +509,8 @@
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.TextBox tbxPlot;
         private System.Windows.Forms.TextBox tbxRating;
+        private System.Windows.Forms.Label lblPlot;
+        private System.Windows.Forms.Label Rating;
     }
 }
 
