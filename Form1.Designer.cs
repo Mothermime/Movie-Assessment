@@ -74,9 +74,6 @@
             this.btnReturn = new System.Windows.Forms.Button();
             this.tbxScreen = new System.Windows.Forms.TextBox();
             this.lbxScreen = new System.Windows.Forms.ListBox();
-            this.lvScreen = new System.Windows.Forms.ListView();
-            this.Title = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.Times = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.tabCustomers.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCustomer)).BeginInit();
@@ -126,7 +123,7 @@
             this.tabRentedMovies.Location = new System.Drawing.Point(4, 22);
             this.tabRentedMovies.Name = "tabRentedMovies";
             this.tabRentedMovies.Padding = new System.Windows.Forms.Padding(3);
-            this.tabRentedMovies.Size = new System.Drawing.Size(732, 372);
+            this.tabRentedMovies.Size = new System.Drawing.Size(732, 326);
             this.tabRentedMovies.TabIndex = 1;
             this.tabRentedMovies.Text = "Rented Movies";
             this.tabRentedMovies.UseVisualStyleBackColor = true;
@@ -144,7 +141,7 @@
             this.tabMovies.Controls.Add(this.dgvMovies);
             this.tabMovies.Location = new System.Drawing.Point(4, 22);
             this.tabMovies.Name = "tabMovies";
-            this.tabMovies.Size = new System.Drawing.Size(732, 372);
+            this.tabMovies.Size = new System.Drawing.Size(732, 326);
             this.tabMovies.TabIndex = 2;
             this.tabMovies.Text = "Movies";
             this.tabMovies.UseVisualStyleBackColor = true;
@@ -188,6 +185,7 @@
             this.btnMostVideos.TabIndex = 0;
             this.btnMostVideos.Text = "Who has rented most movies?";
             this.btnMostVideos.UseVisualStyleBackColor = true;
+            this.btnMostVideos.Click += new System.EventHandler(this.btnMostVideos_Click);
             // 
             // tbxFN
             // 
@@ -519,28 +517,8 @@
             this.lbxScreen.Name = "lbxScreen";
             this.lbxScreen.Size = new System.Drawing.Size(288, 135);
             this.lbxScreen.TabIndex = 37;
+            this.lbxScreen.TabStop = false;
             this.lbxScreen.Visible = false;
-            // 
-            // lvScreen
-            // 
-            this.lvScreen.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(195)))), ((int)(((byte)(155)))), ((int)(((byte)(125)))));
-            this.lvScreen.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.Title,
-            this.Times});
-            this.lvScreen.Location = new System.Drawing.Point(818, 43);
-            this.lvScreen.Name = "lvScreen";
-            this.lvScreen.Size = new System.Drawing.Size(199, 108);
-            this.lvScreen.TabIndex = 0;
-            this.lvScreen.UseCompatibleStateImageBehavior = false;
-            this.lvScreen.Visible = false;
-            // 
-            // Title
-            // 
-            this.Title.Text = " Title";
-            // 
-            // Times
-            // 
-            this.Times.Text = "Times";
             // 
             // Form1
             // 
@@ -549,7 +527,6 @@
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(1335, 711);
             this.Controls.Add(this.lbxScreen);
-            this.Controls.Add(this.lvScreen);
             this.Controls.Add(this.tabCustomers);
             this.Controls.Add(this.btnReturn);
             this.Controls.Add(this.btnIssue);
@@ -650,9 +627,6 @@
         private System.Windows.Forms.Button btnMostPopular;
         private System.Windows.Forms.Button btnMostVideos;
         private System.Windows.Forms.ListBox lbxScreen;
-        private System.Windows.Forms.ListView lvScreen;
-        private System.Windows.Forms.ColumnHeader Title;
-        private System.Windows.Forms.ColumnHeader Times;
     }
 }
 

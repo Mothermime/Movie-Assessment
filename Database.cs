@@ -5,6 +5,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Net.Sockets;
 using System.Runtime.Remoting.Messaging;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -232,10 +233,10 @@ namespace MoviesAssessmentJane
 
         public List<string> FillListViewwithMostPopularMovies()
 
-        // try
+            // try
         {
             var myCommand = new SqlCommand();
-            myCommand = new SqlCommand ("select * from MaxMostPopular", Connection);
+            myCommand = new SqlCommand("select * from MaxMostPopular", Connection);
             // da = new SqlDataAdapter(SQL, Connection);
             //DataTable dt = new DataTable();
             List<string> newMaxMostPopular = new List<string>();
@@ -245,14 +246,38 @@ namespace MoviesAssessmentJane
             if (reader.HasRows)
             {
                 while (reader.Read())
-                {// ListViewItem item = new ListViewItem(new[]
-                    newMaxMostPopular.Add(reader["Times"].ToString()+ " views   " +(reader["Title"].ToString()));
-                   // newMaxMostPopular.Add(reader["Title"].ToString());
+                {
+// ListViewItem item = new ListViewItem(new[]
+                    newMaxMostPopular.Add(reader["Times"].ToString() + " views   " + (reader["Title"].ToString()));
+                    // newMaxMostPopular.Add(reader["Title"].ToString());
                 }
             }
             reader.Close();
             Connection.Close();
             return newMaxMostPopular;
+        }
+
+        public List<string> RentedMostMovies()
+            {
+            var myCommand = new SqlCommand();
+        myCommand = new SqlCommand("select Top (1) FirstName, LastName from IssueCount", Connection);
+        // da = new SqlDataAdapter(SQL, Connection);
+        //DataTable dt = new DataTable();
+        List<string> newIssueCount = new List<string>();
+        Connection.Open();
+            // da.Fill(dt);
+            SqlDataReader reader = myCommand.ExecuteReader();
+            if (reader.HasRows)
+            {
+                while (reader.Read())
+                {
+                    newIssueCount.Add(reader["FirstName"].ToString()+ " " +(reader["LastName"].ToString()));
+                   
+                }
+}
+reader.Close();
+            Connection.Close();
+            return newIssueCount;
         }
     }
 }

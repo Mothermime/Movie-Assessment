@@ -270,12 +270,19 @@ namespace MoviesAssessmentJane
         {
           lbxScreen.DataSource =  myDatabase.FillListViewwithMostPopularMovies();
           // lvScreen.Items.Add("Title");
-            lvScreen.Visible = false;
+            
             tbxScreen.Visible = false;
             lbxScreen.Visible = true;
         }
 
-
+        private void btnMostVideos_Click(object sender, EventArgs e)
+        {
+            lbxScreen.DataSource = myDatabase.RentedMostMovies();
+            // lvScreen.Items.Add("Title");
+           
+            tbxScreen.Visible = false;
+            lbxScreen.Visible = true;
+        }
     }      
 }
 
