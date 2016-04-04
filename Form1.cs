@@ -12,15 +12,18 @@ namespace MoviesAssessmentJane
 {
     public partial class Form1 : Form
     {
-        Database myDatabase = new Database();
-      public Form1()
+        private Database myDatabase = new Database();
+        
+        public Form1()
         {
             InitializeComponent();
             LoadDB();
+            lbxScreen.Visible = false;
         }
+
         public void LoadDB()
-        { 
-        DisplayDataGridViewCustomer();
+        {
+            DisplayDataGridViewCustomer();
             DisplayDataGridViewMovie();
         }
 
@@ -46,7 +49,7 @@ namespace MoviesAssessmentJane
                 dgvMovies.DataSource = myDatabase.FilldgvMoviesWithMovies();
                 dgvMovies.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.AllCells);
             }
-            catch (Exception ex )
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
@@ -58,7 +61,7 @@ namespace MoviesAssessmentJane
 
             try
             {
-                CustomerID = (int)dgvCustomer.Rows[e.RowIndex].Cells[0].Value;
+                CustomerID = (int) dgvCustomer.Rows[e.RowIndex].Cells[0].Value;
                 tbxFN.Text = dgvCustomer.Rows[e.RowIndex].Cells[1].Value.ToString();
                 tbxLN.Text = dgvCustomer.Rows[e.RowIndex].Cells[2].Value.ToString();
                 tbxAddress.Text = dgvCustomer.Rows[e.RowIndex].Cells[3].Value.ToString();
@@ -70,20 +73,22 @@ namespace MoviesAssessmentJane
             }
 
             catch (Exception ex)
-           {
-            MessageBox.Show(ex.Message);
-           }
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void btnAddCustomer_Click(object sender, EventArgs e)
         {
             string result = null;
 
-            if ((tbxFN.Text != string.Empty)&& (tbxLN.Text != string.Empty) && (tbxAddress.Text != string.Empty) && (tbxPhone.Text != string.Empty ))
+            if ((tbxFN.Text != string.Empty) && (tbxLN.Text != string.Empty) && (tbxAddress.Text != string.Empty) &&
+                (tbxPhone.Text != string.Empty))
             {
                 try
                 {
-                    result = myDatabase.InsertorUpdateCustomer(tbxFN.Text, tbxLN.Text, tbxAddress.Text, tbxPhone.Text, tbxCustID.Text,
+                    result = myDatabase.InsertorUpdateCustomer(tbxFN.Text, tbxLN.Text, tbxAddress.Text, tbxPhone.Text,
+                        tbxCustID.Text,
                         "Add");
                     MessageBox.Show(tbxFN.Text + "added " + result);
                 }
@@ -111,7 +116,7 @@ namespace MoviesAssessmentJane
 
         public void ClearAllTextBoxes(Control root)
         {
-            foreach ( Control ctrl in root.Controls)
+            foreach (Control ctrl in root.Controls)
             {
                 if (ctrl is TextBox)
                 {
@@ -124,11 +129,13 @@ namespace MoviesAssessmentJane
         {
             string result = null;
 
-            if ((tbxFN.Text != string.Empty) && (tbxLN.Text != string.Empty) && (tbxAddress.Text != string.Empty) && (tbxPhone.Text != string.Empty))
+            if ((tbxFN.Text != string.Empty) && (tbxLN.Text != string.Empty) && (tbxAddress.Text != string.Empty) &&
+                (tbxPhone.Text != string.Empty))
             {
                 try
                 {
-                    result = myDatabase.InsertorUpdateCustomer(tbxFN.Text, tbxLN.Text, tbxAddress.Text, tbxPhone.Text, tbxCustID.Text,
+                    result = myDatabase.InsertorUpdateCustomer(tbxFN.Text, tbxLN.Text, tbxAddress.Text, tbxPhone.Text,
+                        tbxCustID.Text,
                         "Update");
                     MessageBox.Show(tbxFN.Text + " updated" + result);
                 }
@@ -153,18 +160,19 @@ namespace MoviesAssessmentJane
         {
             string CustID = tbxCustID.Text;
             //string result = null;
-            MessageBox.Show(  myDatabase.DeleteCustomer(CustID));
+            MessageBox.Show(myDatabase.DeleteCustomer(CustID));
             DisplayDataGridViewCustomer();
             ClearAllTextBoxes(this);
 
         }
+
         private void dgvMovies_CellContentClick_1(object sender, DataGridViewCellEventArgs e)
         {
             int MovieID = 0;
 
             try
             {
-                MovieID = (int)dgvMovies.Rows[e.RowIndex].Cells[0].Value;
+                MovieID = (int) dgvMovies.Rows[e.RowIndex].Cells[0].Value;
                 tbxRating.Text = dgvMovies.Rows[e.RowIndex].Cells[1].Value.ToString();
                 tbxTitle.Text = dgvMovies.Rows[e.RowIndex].Cells[2].Value.ToString();
                 tbxYear.Text = dgvMovies.Rows[e.RowIndex].Cells[3].Value.ToString();
@@ -173,6 +181,7 @@ namespace MoviesAssessmentJane
                 if (e.RowIndex >= 0)
                 {
                     tbxMovieID.Text = MovieID.ToString();
+                    tbxScreen.Text = tbxTitle.Text;
                 }
             }
 
@@ -181,15 +190,18 @@ namespace MoviesAssessmentJane
                 MessageBox.Show(ex.Message);
             }
         }
+
         private void btnAddMovie_Click(object sender, EventArgs e)
         {
             string result = null;
 
-            if ((tbxRating.Text != String.Empty) && (tbxTitle.Text != string.Empty) && (tbxYear.Text != string.Empty) && (tbxPlot.Text != string.Empty) && (tbxGenre.Text != string.Empty))
+            if ((tbxRating.Text != String.Empty) && (tbxTitle.Text != string.Empty) && (tbxYear.Text != string.Empty) &&
+                (tbxPlot.Text != string.Empty) && (tbxGenre.Text != string.Empty))
             {
                 try
                 {
-                    result = myDatabase.InsertorUpdateMovie( tbxRating.Text, tbxTitle.Text, tbxYear.Text, tbxPlot.Text, tbxGenre.Text, tbxMovieID.Text, "Add");
+                    result = myDatabase.InsertorUpdateMovie(tbxRating.Text, tbxTitle.Text, tbxYear.Text, tbxPlot.Text,
+                        tbxGenre.Text, tbxMovieID.Text, "Add");
                     MessageBox.Show(tbxTitle.Text + " added " + result);
                 }
                 catch (Exception a)
@@ -204,13 +216,14 @@ namespace MoviesAssessmentJane
                 tbxYear.Text = "";
                 tbxPlot.Text = "";
                 tbxGenre.Text = "";
-               
+
             }
             else
             {
                 MessageBox.Show("Please fill in Rating, Title, Year, Plot and Genre boxes.");
             }
         }
+
         private void btnDelMovie_Click(object sender, EventArgs e)
         {
             string MovieID = tbxMovieID.Text;
@@ -224,11 +237,13 @@ namespace MoviesAssessmentJane
         {
             string result = null;
 
-            if ((tbxRating.Text != String.Empty) && (tbxTitle.Text != string.Empty) && (tbxYear.Text != string.Empty) && (tbxPlot.Text != string.Empty) && (tbxGenre.Text != string.Empty))
+            if ((tbxRating.Text != String.Empty) && (tbxTitle.Text != string.Empty) && (tbxYear.Text != string.Empty) &&
+                (tbxPlot.Text != string.Empty) && (tbxGenre.Text != string.Empty))
             {
                 try
                 {
-                    result = myDatabase.InsertorUpdateMovie(tbxRating.Text, tbxTitle.Text, tbxYear.Text, tbxPlot.Text, tbxGenre.Text, tbxMovieID.Text, "Update");
+                    result = myDatabase.InsertorUpdateMovie(tbxRating.Text, tbxTitle.Text, tbxYear.Text, tbxPlot.Text,
+                        tbxGenre.Text, tbxMovieID.Text, "Update");
                     MessageBox.Show(tbxTitle.Text + " updated " + result);
                 }
                 catch (Exception a)
@@ -250,8 +265,17 @@ namespace MoviesAssessmentJane
                 MessageBox.Show("Are these the changes you wish to make?");
             }
         }
-    }
+
+        private void btnMostPopular_Click(object sender, EventArgs e)
+        {
+          lbxScreen.DataSource =  myDatabase.FillListViewwithMostPopularMovies();
+          // lvScreen.Items.Add("Title");
+            lvScreen.Visible = false;
+            tbxScreen.Visible = false;
+            lbxScreen.Visible = true;
+        }
 
 
-    }
+    }      
+}
 
