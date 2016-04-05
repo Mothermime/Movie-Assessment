@@ -335,11 +335,45 @@ namespace MoviesAssessmentJane
             DisplayDataGridViewRentedMovies();
         }
 
-       // private void btnFees_Click(object sender, EventArgs e)
-       // {
-       //myDatabase.CalculateFees();
-       //     //DisplayDataGridViewMovie();
-       // }
+        private void btnIssue_Click(object sender, EventArgs e)
+        {
+            string result = null;
+
+            if ((tbxCustID.Text != string.Empty) && (tbxMovieID.Text != string.Empty) )
+            {
+                try
+                {
+                    result = myDatabase.IssueMovie(tbxCustID.Text, tbxMovieID.Text);
+                    MessageBox.Show( "Title " + result);
+                }
+                catch (Exception a)
+                {
+
+                    MessageBox.Show((a.Message));
+                }
+                 DisplayDataGridViewRentedMovies();
+            tbxFN.Text = "";
+            tbxLN.Text = "";
+            tbxAddress.Text = "";
+            tbxPhone.Text = "";
+           tbxTitle.Text = "";
+           
+                
+            }
+            else
+            {
+                MessageBox.Show("Please select customer and movie from tables.");
+            }
+            myDatabase.FilldgvRentedMovieswithInfo();
+           
+
+        }
+
+        // private void btnFees_Click(object sender, EventArgs e)
+        // {
+        //myDatabase.CalculateFees();
+        //     //DisplayDataGridViewMovie();
+        // }
 
 
 

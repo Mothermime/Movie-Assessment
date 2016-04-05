@@ -64,7 +64,6 @@
             this.tbxGenre = new System.Windows.Forms.TextBox();
             this.tbxCost = new System.Windows.Forms.TextBox();
             this.lblCost = new System.Windows.Forms.Label();
-            this.tbxIssueDate = new System.Windows.Forms.TextBox();
             this.tbx = new System.Windows.Forms.TextBox();
             this.btnClear = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
@@ -76,7 +75,6 @@
             this.btnReturn = new System.Windows.Forms.Button();
             this.tbxScreen = new System.Windows.Forms.TextBox();
             this.lbxScreen = new System.Windows.Forms.ListBox();
-            this.btnFees = new System.Windows.Forms.Button();
             this.tabCustomers.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCustomer)).BeginInit();
@@ -430,13 +428,6 @@
             this.lblCost.TabIndex = 24;
             this.lblCost.Text = "Rental Cost";
             // 
-            // tbxIssueDate
-            // 
-            this.tbxIssueDate.Location = new System.Drawing.Point(1105, 238);
-            this.tbxIssueDate.Name = "tbxIssueDate";
-            this.tbxIssueDate.Size = new System.Drawing.Size(111, 20);
-            this.tbxIssueDate.TabIndex = 25;
-            // 
             // tbx
             // 
             this.tbx.Location = new System.Drawing.Point(1105, 379);
@@ -511,6 +502,7 @@
             this.btnIssue.TabIndex = 34;
             this.btnIssue.Text = "Issue Movie";
             this.btnIssue.UseVisualStyleBackColor = false;
+            this.btnIssue.Click += new System.EventHandler(this.btnIssue_Click);
             // 
             // btnReturn
             // 
@@ -549,23 +541,12 @@
             this.lbxScreen.TabStop = false;
             this.lbxScreen.Visible = false;
             // 
-            // btnFees
-            // 
-            this.btnFees.Location = new System.Drawing.Point(278, 629);
-            this.btnFees.Name = "btnFees";
-            this.btnFees.Size = new System.Drawing.Size(75, 58);
-            this.btnFees.TabIndex = 38;
-            this.btnFees.Text = "Show Fees";
-            this.btnFees.UseVisualStyleBackColor = true;
-       //     this.btnFees.Click += new System.EventHandler(this.btnFees_Click);
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(1335, 711);
-            this.Controls.Add(this.btnFees);
             this.Controls.Add(this.lbxScreen);
             this.Controls.Add(this.tabCustomers);
             this.Controls.Add(this.btnReturn);
@@ -576,7 +557,6 @@
             this.Controls.Add(this.tbxPlot);
             this.Controls.Add(this.btnClear);
             this.Controls.Add(this.tbx);
-            this.Controls.Add(this.tbxIssueDate);
             this.Controls.Add(this.lblCost);
             this.Controls.Add(this.tbxCost);
             this.Controls.Add(this.tbxGenre);
@@ -652,7 +632,6 @@
         private System.Windows.Forms.TextBox tbxGenre;
         private System.Windows.Forms.TextBox tbxCost;
         private System.Windows.Forms.Label lblCost;
-        private System.Windows.Forms.TextBox tbxIssueDate;
         private System.Windows.Forms.TextBox tbx;
         private System.Windows.Forms.Button btnClear;
         private System.Windows.Forms.PictureBox pictureBox1;
@@ -669,7 +648,6 @@
         private System.Windows.Forms.ListBox lbxScreen;
         private System.Windows.Forms.Button btnMoviesOut;
         private System.Windows.Forms.Button btnAllMoviesIssued;
-        private System.Windows.Forms.Button btnFees;
     }
 }
 

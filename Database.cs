@@ -304,7 +304,7 @@ namespace MoviesAssessmentJane
 
        
 
-        public DataTable IssueMovie(string CustIDFK, string MovieIDFK, string DateRented)
+        public string IssueMovie(string CustIDFK, string MovieIDFK )
         {
             using (SqlCommand cmd = Connection.CreateCommand())
             {
@@ -312,39 +312,15 @@ namespace MoviesAssessmentJane
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.AddWithValue("@CustIDFK", CustIDFK);
                 cmd.Parameters.AddWithValue("@MovieIDFK", MovieIDFK);
-                cmd.Parameters.AddWithValue("@DateRented", DateRented);
+                cmd.Parameters.AddWithValue("@DateRented", DateTime.Now);
                 Connection.Open();
                 cmd.ExecuteNonQuery();
                 Connection.Close();
             }
-            return FilldgvRentedMovieswithInfo();
+            return "Issued";
         }
-
-        //public DataTable CalculateFees(string Title, string Year, string Rating, string Genre, int Rental_Cost)
-        //{
-        //    DataTable dt = new DataTable();
-        //        var myCommand = new SqlCommand();
-        //        myCommand = new SqlCommand("select @Title, @Year, @Rating, @Genre, @Rental_Cost from Movies", Connection);
-        //    int NewYear= Convert.ToInt16(Year); 
-        //        if (DateTime.Now.Date.Year > NewYear - 5)
-        //        {
-        //            Rental_Cost = 2;
-        //        }
-        //        else
-        //        {
-        //            Rental_Cost = 5 ;
-        //        }
-        //    myCommand.Parameters.AddWithValue("Rating", Rating);
-        //    myCommand.Parameters.AddWithValue("Title", Title);
-        //    myCommand.Parameters.AddWithValue("Year", Year);
-        //   myCommand.Parameters.AddWithValue("Genre", Genre);
-        //    myCommand.Parameters.AddWithValue("Rental_Cost",Rental_Cost);
-
-        //    Connection.Open();
-        //    myCommand.ExecuteNonQuery();
-        //    Connection.Close();
-        //    return dt ;
-
-        //}
+        
+       
+       
     }
 }
