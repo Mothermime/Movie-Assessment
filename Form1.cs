@@ -357,8 +357,8 @@ namespace MoviesAssessmentJane
             tbxAddress.Text = "";
             tbxPhone.Text = "";
            tbxTitle.Text = "";
-           
                 
+                tbxScreen.Text = ("$" + tbxCost.Text + " to pay.");
             }
             else
             {
