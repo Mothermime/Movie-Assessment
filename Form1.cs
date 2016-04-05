@@ -25,6 +25,8 @@ namespace MoviesAssessmentJane
         {
             DisplayDataGridViewCustomer();
             DisplayDataGridViewMovie();
+            DisplayDataGridViewRentedMovies();
+            
         }
 
         private void DisplayDataGridViewCustomer()
@@ -47,7 +49,35 @@ namespace MoviesAssessmentJane
             try
             {
                 dgvMovies.DataSource = myDatabase.FilldgvMoviesWithMovies();
-                dgvMovies.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.AllCells);
+               dgvMovies.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.AllCells);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void DisplayDataGridViewRentedMovies()
+        {
+            dgvRentedMovies.DataSource = null;
+            try
+            {
+                dgvRentedMovies.DataSource = myDatabase.FilldgvRentedMovieswithInfo();
+                dgvRentedMovies.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.AllCells);
+            }
+            catch (Exception ex)
+            {
+               MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void MoviesStillOut()
+        {
+            dgvRentedMovies.DataSource = null;
+            try
+            {
+                dgvRentedMovies.DataSource = myDatabase.FilldgvRentedMovieswithMoviesOut();
+                dgvRentedMovies.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.AllCells);
             }
             catch (Exception ex)
             {
@@ -121,7 +151,10 @@ namespace MoviesAssessmentJane
                 if (ctrl is TextBox)
                 {
                     ((TextBox) ctrl).Text = String.Empty;
+                 
                 }
+              
+                lbxScreen.Visible = false;
             }
         }
 
@@ -169,7 +202,7 @@ namespace MoviesAssessmentJane
         private void dgvMovies_CellContentClick_1(object sender, DataGridViewCellEventArgs e)
         {
             int MovieID = 0;
-
+            int Year = 0;
             try
             {
                 MovieID = (int) dgvMovies.Rows[e.RowIndex].Cells[0].Value;
@@ -180,9 +213,18 @@ namespace MoviesAssessmentJane
                 tbxGenre.Text = dgvMovies.Rows[e.RowIndex].Cells[7].Value.ToString();
                 if (e.RowIndex >= 0)
                 {
-                    tbxMovieID.Text = MovieID.ToString();
+                    Year = Convert.ToInt16(tbxYear.Text);
+                    if (DateTime.Now.Date.Year -5 > Year )
+                        tbxCost.Text = "5";
+                    else
+                    {
+                        tbxCost.Text = "2";
+                    }
+
+                            tbxMovieID.Text = MovieID.ToString();
                     tbxScreen.Text = tbxTitle.Text;
                 }
+
             }
 
             catch (Exception ex)
@@ -201,7 +243,7 @@ namespace MoviesAssessmentJane
                 try
                 {
                     result = myDatabase.InsertorUpdateMovie(tbxRating.Text, tbxTitle.Text, tbxYear.Text, tbxPlot.Text,
-                        tbxGenre.Text, tbxMovieID.Text, "Add");
+                        tbxGenre.Text, tbxMovieID.Text, tbxCost.Text, "Add");
                     MessageBox.Show(tbxTitle.Text + " added " + result);
                 }
                 catch (Exception a)
@@ -243,7 +285,7 @@ namespace MoviesAssessmentJane
                 try
                 {
                     result = myDatabase.InsertorUpdateMovie(tbxRating.Text, tbxTitle.Text, tbxYear.Text, tbxPlot.Text,
-                        tbxGenre.Text, tbxMovieID.Text, "Update");
+                        tbxGenre.Text, tbxMovieID.Text, tbxCost.Text, "Update");
                     MessageBox.Show(tbxTitle.Text + " updated " + result);
                 }
                 catch (Exception a)
@@ -278,11 +320,33 @@ namespace MoviesAssessmentJane
         private void btnMostVideos_Click(object sender, EventArgs e)
         {
             lbxScreen.DataSource = myDatabase.RentedMostMovies();
-            // lvScreen.Items.Add("Title");
            
             tbxScreen.Visible = false;
             lbxScreen.Visible = true;
         }
+
+        private void btnMoviesOut_Click(object sender, EventArgs e)
+        {
+            MoviesStillOut();
+        }
+
+        private void btnAllMoviesIssued_Click(object sender, EventArgs e)
+        {
+            DisplayDataGridViewRentedMovies();
+        }
+
+       // private void btnFees_Click(object sender, EventArgs e)
+       // {
+       //myDatabase.CalculateFees();
+       //     //DisplayDataGridViewMovie();
+       // }
+
+
+
+        //private void btnIssue_Click(object sender, EventArgs e)
+        //{
+        //  myDatabase.IssueMovie();
+        //}
     }      
 }
 

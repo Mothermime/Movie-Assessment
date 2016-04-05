@@ -32,6 +32,8 @@
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.dgvCustomer = new System.Windows.Forms.DataGridView();
             this.tabRentedMovies = new System.Windows.Forms.TabPage();
+            this.btnAllMoviesIssued = new System.Windows.Forms.Button();
+            this.btnMoviesOut = new System.Windows.Forms.Button();
             this.dgvRentedMovies = new System.Windows.Forms.DataGridView();
             this.tabMovies = new System.Windows.Forms.TabPage();
             this.dgvMovies = new System.Windows.Forms.DataGridView();
@@ -74,6 +76,7 @@
             this.btnReturn = new System.Windows.Forms.Button();
             this.tbxScreen = new System.Windows.Forms.TextBox();
             this.lbxScreen = new System.Windows.Forms.ListBox();
+            this.btnFees = new System.Windows.Forms.Button();
             this.tabCustomers.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCustomer)).BeginInit();
@@ -119,6 +122,8 @@
             // 
             // tabRentedMovies
             // 
+            this.tabRentedMovies.Controls.Add(this.btnAllMoviesIssued);
+            this.tabRentedMovies.Controls.Add(this.btnMoviesOut);
             this.tabRentedMovies.Controls.Add(this.dgvRentedMovies);
             this.tabRentedMovies.Location = new System.Drawing.Point(4, 22);
             this.tabRentedMovies.Name = "tabRentedMovies";
@@ -128,12 +133,36 @@
             this.tabRentedMovies.Text = "Rented Movies";
             this.tabRentedMovies.UseVisualStyleBackColor = true;
             // 
+            // btnAllMoviesIssued
+            // 
+            this.btnAllMoviesIssued.BackColor = System.Drawing.Color.Coral;
+            this.btnAllMoviesIssued.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAllMoviesIssued.Location = new System.Drawing.Point(596, 267);
+            this.btnAllMoviesIssued.Name = "btnAllMoviesIssued";
+            this.btnAllMoviesIssued.Size = new System.Drawing.Size(115, 53);
+            this.btnAllMoviesIssued.TabIndex = 2;
+            this.btnAllMoviesIssued.Text = "Return to All Movies Issued";
+            this.btnAllMoviesIssued.UseVisualStyleBackColor = false;
+            this.btnAllMoviesIssued.Click += new System.EventHandler(this.btnAllMoviesIssued_Click);
+            // 
+            // btnMoviesOut
+            // 
+            this.btnMoviesOut.BackColor = System.Drawing.Color.Red;
+            this.btnMoviesOut.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnMoviesOut.Location = new System.Drawing.Point(244, 267);
+            this.btnMoviesOut.Name = "btnMoviesOut";
+            this.btnMoviesOut.Size = new System.Drawing.Size(169, 53);
+            this.btnMoviesOut.TabIndex = 1;
+            this.btnMoviesOut.Text = "Show Movies Still Out";
+            this.btnMoviesOut.UseVisualStyleBackColor = false;
+            this.btnMoviesOut.Click += new System.EventHandler(this.btnMoviesOut_Click);
+            // 
             // dgvRentedMovies
             // 
             this.dgvRentedMovies.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvRentedMovies.Location = new System.Drawing.Point(6, 0);
             this.dgvRentedMovies.Name = "dgvRentedMovies";
-            this.dgvRentedMovies.Size = new System.Drawing.Size(720, 320);
+            this.dgvRentedMovies.Size = new System.Drawing.Size(720, 261);
             this.dgvRentedMovies.TabIndex = 0;
             // 
             // tabMovies
@@ -520,12 +549,23 @@
             this.lbxScreen.TabStop = false;
             this.lbxScreen.Visible = false;
             // 
+            // btnFees
+            // 
+            this.btnFees.Location = new System.Drawing.Point(278, 629);
+            this.btnFees.Name = "btnFees";
+            this.btnFees.Size = new System.Drawing.Size(75, 58);
+            this.btnFees.TabIndex = 38;
+            this.btnFees.Text = "Show Fees";
+            this.btnFees.UseVisualStyleBackColor = true;
+       //     this.btnFees.Click += new System.EventHandler(this.btnFees_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(1335, 711);
+            this.Controls.Add(this.btnFees);
             this.Controls.Add(this.lbxScreen);
             this.Controls.Add(this.tabCustomers);
             this.Controls.Add(this.btnReturn);
@@ -627,6 +667,9 @@
         private System.Windows.Forms.Button btnMostPopular;
         private System.Windows.Forms.Button btnMostVideos;
         private System.Windows.Forms.ListBox lbxScreen;
+        private System.Windows.Forms.Button btnMoviesOut;
+        private System.Windows.Forms.Button btnAllMoviesIssued;
+        private System.Windows.Forms.Button btnFees;
     }
 }
 

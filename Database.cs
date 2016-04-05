@@ -5,6 +5,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Net.Sockets;
 using System.Runtime.Remoting.Messaging;
+using System.Runtime.Remoting.Metadata.W3cXsd2001;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
@@ -43,6 +44,29 @@ namespace MoviesAssessmentJane
         {
             DataTable dt = new DataTable();
             using (da = new SqlDataAdapter("select * from Movies", Connection))
+            {
+                Connection.Open();
+                da.Fill(dt);
+                Connection.Close();
+            }
+            return dt;
+        }
+        public DataTable FilldgvRentedMovieswithInfo()
+        {
+            DataTable dt = new DataTable();
+            using (da = new SqlDataAdapter("select * from IssuesReturns", Connection))
+            {
+                Connection.Open();
+                da.Fill(dt);
+                Connection.Close();
+            }
+            return dt;
+        }
+
+        public DataTable FilldgvRentedMovieswithMoviesOut()
+        {
+            DataTable dt = new DataTable();
+            using (da = new SqlDataAdapter("select * from NotReturned", Connection))
             {
                 Connection.Open();
                 da.Fill(dt);
@@ -110,7 +134,7 @@ namespace MoviesAssessmentJane
                 Connection.Close();
                 return " has failed with " + a;
             }
-            return "";
+            //return "";
         }
 
         public string DeleteCustomer(string CustID)
@@ -137,7 +161,7 @@ namespace MoviesAssessmentJane
 
 
         public string InsertorUpdateMovie(string Rating, string Title, string Year, string Plot, string Genre,
-            string MovieID, string AddorUpdate)
+            string MovieID, string Rental_Cost, string AddorUpdate)
         {
             try
             {
@@ -145,14 +169,15 @@ namespace MoviesAssessmentJane
                 {
                     var myCommand =
                         new SqlCommand(
-                            "Insert into Movies (Rating, Title, Year,  Plot, Genre)" +
-                            "Values (@Rating, @Title, @Year, @Plot, @Genre)", Connection);
+                            "Insert into Movies (Rating, Title, Year,  Plot, Genre, Rental_Cost)" +
+                            "Values (@Rating, @Title, @Year, @Plot, @Genre, @Rental_Cost)", Connection);
 
                     myCommand.Parameters.AddWithValue("Rating", Rating);
                     myCommand.Parameters.AddWithValue("Title", Title);
                     myCommand.Parameters.AddWithValue("Year", Year);
                     myCommand.Parameters.AddWithValue("Plot", Plot);
                     myCommand.Parameters.AddWithValue("Genre", Genre);
+                    myCommand.Parameters.AddWithValue("Rental_Cost", Rental_Cost);
 
                     Connection.Open();
                     myCommand.ExecuteNonQuery();
@@ -247,9 +272,7 @@ namespace MoviesAssessmentJane
             {
                 while (reader.Read())
                 {
-// ListViewItem item = new ListViewItem(new[]
                     newMaxMostPopular.Add(reader["Times"].ToString() + " views   " + (reader["Title"].ToString()));
-                    // newMaxMostPopular.Add(reader["Title"].ToString());
                 }
             }
             reader.Close();
@@ -272,12 +295,56 @@ namespace MoviesAssessmentJane
                 while (reader.Read())
                 {
                     newIssueCount.Add(reader["FirstName"].ToString()+ " " +(reader["LastName"].ToString()));
-                   
                 }
-}
-reader.Close();
+            }
+            reader.Close();
             Connection.Close();
             return newIssueCount;
         }
+
+       
+
+        public DataTable IssueMovie(string CustIDFK, string MovieIDFK, string DateRented)
+        {
+            using (SqlCommand cmd = Connection.CreateCommand())
+            {
+                cmd.CommandText = "MovieIssue";
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@CustIDFK", CustIDFK);
+                cmd.Parameters.AddWithValue("@MovieIDFK", MovieIDFK);
+                cmd.Parameters.AddWithValue("@DateRented", DateRented);
+                Connection.Open();
+                cmd.ExecuteNonQuery();
+                Connection.Close();
+            }
+            return FilldgvRentedMovieswithInfo();
+        }
+
+        //public DataTable CalculateFees(string Title, string Year, string Rating, string Genre, int Rental_Cost)
+        //{
+        //    DataTable dt = new DataTable();
+        //        var myCommand = new SqlCommand();
+        //        myCommand = new SqlCommand("select @Title, @Year, @Rating, @Genre, @Rental_Cost from Movies", Connection);
+        //    int NewYear= Convert.ToInt16(Year); 
+        //        if (DateTime.Now.Date.Year > NewYear - 5)
+        //        {
+        //            Rental_Cost = 2;
+        //        }
+        //        else
+        //        {
+        //            Rental_Cost = 5 ;
+        //        }
+        //    myCommand.Parameters.AddWithValue("Rating", Rating);
+        //    myCommand.Parameters.AddWithValue("Title", Title);
+        //    myCommand.Parameters.AddWithValue("Year", Year);
+        //   myCommand.Parameters.AddWithValue("Genre", Genre);
+        //    myCommand.Parameters.AddWithValue("Rental_Cost",Rental_Cost);
+
+        //    Connection.Open();
+        //    myCommand.ExecuteNonQuery();
+        //    Connection.Close();
+        //    return dt ;
+
+        //}
     }
 }
