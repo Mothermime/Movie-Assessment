@@ -213,16 +213,17 @@ namespace MoviesAssessmentJane
                 tbxGenre.Text = dgvMovies.Rows[e.RowIndex].Cells[7].Value.ToString();
                 if (e.RowIndex >= 0)
                 {
-                    Year = Convert.ToInt16(tbxYear.Text);
-                    if (DateTime.Now.Date.Year -5 > Year )
-                        tbxCost.Text = "5";
-                    else
-                    {
-                        tbxCost.Text = "2";
-                    }
-
+                    //Year = Convert.ToInt16(tbxYear.Text);
+                    //if (DateTime.Now.Date.Year -5 > Year )
+                    //    tbxCost.Text = "5";
+                    //else
+                    //{
+                    //    tbxCost.Text = "2";
+                    //}
+                    
                             tbxMovieID.Text = MovieID.ToString();
                     tbxScreen.Text = tbxTitle.Text;
+                    tbxCost.Text = Cost(dgvMovies.Rows[e.RowIndex].Cells[3].Value.ToString());
                 }
 
             }
@@ -231,6 +232,23 @@ namespace MoviesAssessmentJane
             {
                 MessageBox.Show(ex.Message);
             }
+        }
+
+        public string Cost(string MovieYear)
+        {
+            int Yearnow = (Convert.ToInt32(DateTime.Now.Year));
+            int YearsOld = Yearnow - Convert.ToInt32(MovieYear);
+            if (YearsOld <= 5)
+            
+            {
+                return "5";
+
+            }
+            else
+            {
+                return "2";
+            } 
+              
         }
 
         private void btnAddMovie_Click(object sender, EventArgs e)
@@ -311,16 +329,15 @@ namespace MoviesAssessmentJane
         private void btnMostPopular_Click(object sender, EventArgs e)
         {
           lbxScreen.DataSource =  myDatabase.FillListViewwithMostPopularMovies();
-          // lvScreen.Items.Add("Title");
+         
             
             tbxScreen.Visible = false;
             lbxScreen.Visible = true;
         }
 
         private void btnMostVideos_Click(object sender, EventArgs e)
-        {
+        { //information comes from the RentedMostMOvies view
             lbxScreen.DataSource = myDatabase.RentedMostMovies();
-           
             tbxScreen.Visible = false;
             lbxScreen.Visible = true;
         }
@@ -356,7 +373,7 @@ namespace MoviesAssessmentJane
             tbxLN.Text = "";
             tbxAddress.Text = "";
             tbxPhone.Text = "";
-           tbxTitle.Text = "";
+            tbxTitle.Text = "";
                 
                 tbxScreen.Text = ("$" + tbxCost.Text + " to pay.");
             }
