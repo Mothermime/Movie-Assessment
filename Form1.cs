@@ -365,22 +365,39 @@ namespace MoviesAssessmentJane
                 MessageBox.Show("Please select customer and movie from tables.");
             }
             myDatabase.FilldgvRentedMovieswithInfo();
-           
-
         }
 
-        // private void btnFees_Click(object sender, EventArgs e)
-        // {
-        //myDatabase.CalculateFees();
-        //     //DisplayDataGridViewMovie();
-        // }
+        private void btnReturn_Click(object sender, EventArgs e)
+        {
+            string RMID = tbxRMID.Text;
+           
+            MessageBox.Show(myDatabase.ReturnMovie(RMID));
+            DisplayDataGridViewMovie();
+            //ClearAllTextBoxes(this);
+        }
+
+        private void dgvRentedMovies_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            int RMID = 0;
+            //int CustIDFK = 0;
+            //int MovieIDFK = 0;
 
 
+            try
+            {
+                RMID = (int)dgvRentedMovies.Rows[e.RowIndex].Cells[0].Value;
+                
+                if (e.RowIndex >= 0)
+                {
+                    tbxRMID.Text = RMID.ToString();
+                }
+            }
 
-        //private void btnIssue_Click(object sender, EventArgs e)
-        //{
-        //  myDatabase.IssueMovie();
-        //}
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
     }      
 }
 

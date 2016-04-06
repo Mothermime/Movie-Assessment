@@ -319,8 +319,22 @@ namespace MoviesAssessmentJane
             }
             return "Issued";
         }
-        
-       
-       
+
+        public string ReturnMovie(string RMID)
+        {
+            using (SqlCommand cmd = Connection.CreateCommand())
+            {
+                cmd.CommandText = "ReturnMovie";
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@RMID", RMID);
+                cmd.Parameters.AddWithValue("@DateReturned", DateTime.Now);
+                Connection.Open();
+                cmd.ExecuteNonQuery();
+                Connection.Close();
+            }
+            return "Movie Returned";
+        }
+
+
     }
 }

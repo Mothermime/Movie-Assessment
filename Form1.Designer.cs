@@ -75,6 +75,7 @@
             this.btnReturn = new System.Windows.Forms.Button();
             this.tbxScreen = new System.Windows.Forms.TextBox();
             this.lbxScreen = new System.Windows.Forms.ListBox();
+            this.tbxRMID = new System.Windows.Forms.TextBox();
             this.tabCustomers.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCustomer)).BeginInit();
@@ -116,10 +117,11 @@
             this.dgvCustomer.Name = "dgvCustomer";
             this.dgvCustomer.Size = new System.Drawing.Size(723, 317);
             this.dgvCustomer.TabIndex = 0;
-            this.dgvCustomer.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvCustomer_CellContentClick);
+            this.dgvCustomer.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvCustomer_CellContentClick);
             // 
             // tabRentedMovies
             // 
+            this.tabRentedMovies.Controls.Add(this.tbxRMID);
             this.tabRentedMovies.Controls.Add(this.btnAllMoviesIssued);
             this.tabRentedMovies.Controls.Add(this.btnMoviesOut);
             this.tabRentedMovies.Controls.Add(this.dgvRentedMovies);
@@ -162,6 +164,7 @@
             this.dgvRentedMovies.Name = "dgvRentedMovies";
             this.dgvRentedMovies.Size = new System.Drawing.Size(720, 261);
             this.dgvRentedMovies.TabIndex = 0;
+            this.dgvRentedMovies.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvRentedMovies_CellContentClick);
             // 
             // tabMovies
             // 
@@ -180,7 +183,7 @@
             this.dgvMovies.Name = "dgvMovies";
             this.dgvMovies.Size = new System.Drawing.Size(726, 320);
             this.dgvMovies.TabIndex = 0;
-            this.dgvMovies.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvMovies_CellContentClick_1);
+            this.dgvMovies.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvMovies_CellContentClick_1);
             // 
             // tabQueries
             // 
@@ -514,6 +517,7 @@
             this.btnReturn.TabIndex = 35;
             this.btnReturn.Text = "Return Movie";
             this.btnReturn.UseVisualStyleBackColor = false;
+            this.btnReturn.Click += new System.EventHandler(this.btnReturn_Click);
             // 
             // tbxScreen
             // 
@@ -540,6 +544,13 @@
             this.lbxScreen.TabIndex = 37;
             this.lbxScreen.TabStop = false;
             this.lbxScreen.Visible = false;
+            // 
+            // tbxRMID
+            // 
+            this.tbxRMID.Location = new System.Drawing.Point(28, 270);
+            this.tbxRMID.Name = "tbxRMID";
+            this.tbxRMID.Size = new System.Drawing.Size(34, 20);
+            this.tbxRMID.TabIndex = 3;
             // 
             // Form1
             // 
@@ -589,6 +600,7 @@
             this.tabPage1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvCustomer)).EndInit();
             this.tabRentedMovies.ResumeLayout(false);
+            this.tabRentedMovies.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvRentedMovies)).EndInit();
             this.tabMovies.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvMovies)).EndInit();
@@ -648,6 +660,7 @@
         private System.Windows.Forms.ListBox lbxScreen;
         private System.Windows.Forms.Button btnMoviesOut;
         private System.Windows.Forms.Button btnAllMoviesIssued;
+        private System.Windows.Forms.TextBox tbxRMID;
     }
 }
 
