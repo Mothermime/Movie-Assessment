@@ -240,13 +240,13 @@ namespace MoviesAssessmentJane
             DataTable dt = new DataTable();
             try
             {
-                string SQL = "select * from Customer";
-
-                Connection.Open();
-
-                da.Fill(dt);
-
-                Connection.Close();
+               
+                using (da = new SqlDataAdapter("select * from Movies", Connection))
+                {
+                    Connection.Open();
+                    da.Fill(dt);
+                    Connection.Close();
+                }
                 return true;
             }
             catch (Exception)
