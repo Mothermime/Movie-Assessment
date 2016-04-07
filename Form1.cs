@@ -120,7 +120,7 @@ namespace MoviesAssessmentJane
                     result = myDatabase.InsertorUpdateCustomer(tbxFN.Text, tbxLN.Text, tbxAddress.Text, tbxPhone.Text,
                         tbxCustID.Text,
                         "Add");
-                    MessageBox.Show(tbxFN.Text + "added " + result);
+                    MessageBox.Show(tbxFN.Text + " " + tbxLN.Text + " added " + result);
                 }
                 catch (Exception a)
                 {
@@ -170,7 +170,7 @@ namespace MoviesAssessmentJane
                     result = myDatabase.InsertorUpdateCustomer(tbxFN.Text, tbxLN.Text, tbxAddress.Text, tbxPhone.Text,
                         tbxCustID.Text,
                         "Update");
-                    MessageBox.Show(tbxFN.Text + " updated" + result);
+                    MessageBox.Show(tbxFN.Text + " "+ tbxLN.Text + " updated" + result);
                 }
                 catch (Exception a)
                 {

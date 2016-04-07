@@ -14,34 +14,39 @@ using System.Windows.Forms;
 namespace MoviesAssessmentJane
 {
     public class Database
-    {
+    {//globalise instantiations
         private SqlConnection Connection = new SqlConnection();
         private SqlCommand Command = new SqlCommand();
         private SqlDataAdapter da = new SqlDataAdapter();
         
 
         public Database()
-        {
+        {//the route by which access to the database is gained
             string connectionString =
                 @"Data Source= LAPTOP\sqlexpress;Initial Catalog=VBMoviesFullData;Integrated Security=True";
             Connection.ConnectionString = connectionString;
+            //name used to create the connection
             Command.Connection = Connection;
         }
 
         public DataTable FilldgvCustomerWithCustomer()
-        {
+            //returns a database
+        {//Instantiate the datatable
             DataTable dt = new DataTable();
+            //get all the information from datatable
             using (da = new SqlDataAdapter("select * from Customer", Connection))
-            {
+            {//open the connection to database
                 Connection.Open();
+                //fill the datatable
                 da.Fill(dt);
+                //close the connection to prevent hiccups
                 Connection.Close();
-            }
+            }// output is a datatable
             return dt;
         }
 
         public DataTable FilldgvMoviesWithMovies()
-        {
+        {//As above
             DataTable dt = new DataTable();
             using (da = new SqlDataAdapter("select * from Movies", Connection))
             {
@@ -52,7 +57,7 @@ namespace MoviesAssessmentJane
             return dt;
         }
         public DataTable FilldgvRentedMovieswithInfo()
-        {
+        {//and above 
             DataTable dt = new DataTable();
             using (da = new SqlDataAdapter("select * from IssuesReturns", Connection))
             {
@@ -77,7 +82,7 @@ namespace MoviesAssessmentJane
 
         public string InsertorUpdateCustomer(string Firstname, string Lastname, string Address, string Phone,
             string CustID, string AddorUpdate)
-        {
+        {//returns a string 
             try
             {
                 if (AddorUpdate == "Add")
@@ -86,7 +91,9 @@ namespace MoviesAssessmentJane
                     //      new SqlCommand
                     // using (SqlConnection Con = new SqlConnection(connectionString))
                     using (SqlCommand cmd = Connection.CreateCommand())
-                    {
+
+                    {// Changed from using a view to a stored procedure  -very protected
+                     // this puts the parameters into the code so that the data in the text boxes is added to the database 
                         cmd.CommandText = "AddCustomer";
                         cmd.CommandType = CommandType.StoredProcedure;
                         cmd.Parameters.AddWithValue("@FirstName", Firstname);
@@ -110,11 +117,12 @@ namespace MoviesAssessmentJane
                     }
                 }
                 else if (AddorUpdate == "Update")
-                {
+                {//using a view
                     var myCommand =
                         new SqlCommand(
                             "Update Customer set FirstName = @Firstname, LastName = @LastName, Address = @Address, Phone = @Phone where CustID = @CustID",
                             Connection);
+                    //sanitisation to stop anyone else from putting code in that can be used as code
                     myCommand.Parameters.AddWithValue("Firstname", Firstname);
                     myCommand.Parameters.AddWithValue("Lastname", Lastname);
                     myCommand.Parameters.AddWithValue("Address", Address);
@@ -130,7 +138,7 @@ namespace MoviesAssessmentJane
 
             }
             catch (Exception a)
-            {
+            {// identifying an exception and adding it to the return statement shows withwhatever the failure is to make it easier to figure out where things are not working
                 Connection.Close();
                 return " has failed with " + a;
             }
@@ -138,33 +146,36 @@ namespace MoviesAssessmentJane
         }
 
         public string DeleteCustomer(string CustID)
-        {
+        {//'object' refers to an object on the form
             if (!object.ReferenceEquals(CustID, string.Empty))
             {
                 var myCommand = new SqlCommand();
                 myCommand = new SqlCommand("Delete from Customer where CustID = @CustID");
 
                 myCommand.Connection = Connection;
+                //specify what to delete by using the ID causes all information to be impacted
                 myCommand.Parameters.AddWithValue("CustID", CustID);
 
                 Connection.Open();
                 myCommand.ExecuteNonQuery();
                 Connection.Close();
-                return "Deletion successful.";
+                return "Customer has been deleted.";
             }
             else
-            {
+            {//if code fails to work a message error is displayed
                 Connection.Close();
-                return "Deletion failed.";
+                return "Customer has not been deleted.";
             }
         }
 
 
         public string InsertorUpdateMovie(string Rating, string Title, string Year, string Plot, string Genre,
             string MovieID, string Rental_Cost, string AddorUpdate)
-        {
+        {//same process as above 
+            //if/else provides a way to combine methods, with essentially the same data, with slightly different commands  i.e. in this case it saves having to write an update method and an add method
+            //could also use a switch statement to connect all buttons that work on the same concepts/buttons
             try
-            {
+            {//"Add" is included when method is called to identify which action is required
                 if (AddorUpdate == "Add")
                 {
                     var myCommand =
@@ -182,7 +193,7 @@ namespace MoviesAssessmentJane
                     Connection.Open();
                     myCommand.ExecuteNonQuery();
                     Connection.Close();
-                }
+                }//this time "update" is the identifier and is case sensitive!
                 else if (AddorUpdate == "Update")
                 {
                     var myCommand =
@@ -201,12 +212,12 @@ namespace MoviesAssessmentJane
                     myCommand.ExecuteNonQuery();
                     Connection.Close();
 
-                }
+                }//a nice little message to let you know it worked
                 return " successfuly.";
 
             }
             catch (Exception b)
-            {
+            {//or unsuccessful
                 Connection.Close();
                 return " has failed with " + b;
             }
@@ -214,7 +225,7 @@ namespace MoviesAssessmentJane
         }
 
         public string DeleteMovie(string MovieID)
-        {
+        {//as for delete customer
             if (!object.ReferenceEquals(MovieID, string.Empty))
             {
                 var myCommand = new SqlCommand();
@@ -226,17 +237,17 @@ namespace MoviesAssessmentJane
                 Connection.Open();
                 myCommand.ExecuteNonQuery();
                 Connection.Close();
-                return "Deletion successful.";
+                return "Movie has been deleted.";
             }
             else
             {
                 Connection.Close();
-                return "Deletion failed.";
+                return "Movie has not been deleted.";
             }
         }
 
         public bool ConnectionUnitTest()
-        {
+        {//method for unit test to test connection (strange as that may seem!)
             DataTable dt = new DataTable();
             try
             {
@@ -257,6 +268,7 @@ namespace MoviesAssessmentJane
         }
 
         public List<string> FillListViewwithMostPopularMovies()
+            //returns a list
 
             // try
         {
@@ -264,9 +276,13 @@ namespace MoviesAssessmentJane
             myCommand = new SqlCommand("select * from MaxMostPopular", Connection);
             // da = new SqlDataAdapter(SQL, Connection);
             //DataTable dt = new DataTable();
+
+            //instantiation - whatever = new whatever()  takes an underlying template and makes a new version of it
             List<string> newMaxMostPopular = new List<string>();
             Connection.Open();
             // da.Fill(dt);
+
+
             SqlDataReader reader = myCommand.ExecuteReader();
             if (reader.HasRows)
             {
