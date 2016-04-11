@@ -9,28 +9,31 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace MoviesAssessmentJane
-{
+{//'Forms' is a class.  The only methods etc that should be here are those that apply to the form and it's components. 
+    //All others should be in a different class e.g. database class (It's the only other one I have at the moment!)
     public partial class Form1 : Form
-    {
+    { //Instantiate database class - create a new 'instance' of it from the 'blueprint'
         private Database myDatabase = new Database();
         
         public Form1()
-        {
+        {//Set everything in place - preparation
             InitializeComponent();
             LoadDB();
             lbxScreen.Visible = false;
         }
-
+        //Display the data in the tables
         public void LoadDB()
-        {
+        {//call up all the methods that have been written below
             DisplayDataGridViewCustomer();
             DisplayDataGridViewMovie();
             DisplayDataGridViewRentedMovies();
             
         }
-
+        //private vs public:  If there is no need for anyone else to have access to the method then it should be private.  Anything that applies only to the class in which it is located can be a private.  Anything that is going to be accessed by other classes needs to be public.  Technically, the above method could be private
+        
         private void DisplayDataGridViewCustomer()
-        {
+        {//load the customer table 
+            //start off empty
             dgvCustomer.DataSource = null;
             try
             {
@@ -38,13 +41,13 @@ namespace MoviesAssessmentJane
                 dgvCustomer.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.AllCells);
             }
             catch (Exception ex)
-            {
+            {// wonderful way to show where to find any errors!
                 MessageBox.Show(ex.Message);
             }
         }
 
         private void DisplayDataGridViewMovie()
-        {
+        {//load the Movie table
             dgvMovies.DataSource = null;
             try
             {
@@ -58,7 +61,7 @@ namespace MoviesAssessmentJane
         }
 
         private void DisplayDataGridViewRentedMovies()
-        {
+        {//load  rented movies table
             dgvRentedMovies.DataSource = null;
             try
             {
@@ -72,7 +75,7 @@ namespace MoviesAssessmentJane
         }
 
         private void MoviesStillOut()
-        {
+        {//load the view that has been created and fill the data grid view with a new set of information
             dgvRentedMovies.DataSource = null;
             try
             {
@@ -86,7 +89,7 @@ namespace MoviesAssessmentJane
         }
 
         private void dgvCustomer_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
+        {//specify the layout of the dgv and what it will contain
             int CustomerID = 0;
 
             try
@@ -111,12 +114,12 @@ namespace MoviesAssessmentJane
         private void btnAddCustomer_Click(object sender, EventArgs e)
         {
             string result = null;
-
+            // if there's nothing in the specified text boxes
             if ((tbxFN.Text != string.Empty) && (tbxLN.Text != string.Empty) && (tbxAddress.Text != string.Empty) &&
                 (tbxPhone.Text != string.Empty))
             {
                 try
-                {
+                {//call up the method from the class
                     result = myDatabase.InsertorUpdateCustomer(tbxFN.Text, tbxLN.Text, tbxAddress.Text, tbxPhone.Text,
                         tbxCustID.Text,
                         "Add");
@@ -127,6 +130,7 @@ namespace MoviesAssessmentJane
 
                     MessageBox.Show((a.Message));
                 }
+                //where the output/results are to be displayed
                 DisplayDataGridViewCustomer();
                 tbxFN.Text = "";
                 tbxLN.Text = "";
@@ -140,7 +144,7 @@ namespace MoviesAssessmentJane
         }
 
         private void btnClear_Click(object sender, EventArgs e)
-        {
+        {//Gets rid of all the information sitting in text boxes
             ClearAllTextBoxes(this);
         }
 
@@ -159,7 +163,7 @@ namespace MoviesAssessmentJane
         }
 
         private void btnUpdateCust_Click(object sender, EventArgs e)
-        {
+        {//again, if the boxes 
             string result = null;
 
             if ((tbxFN.Text != string.Empty) && (tbxLN.Text != string.Empty) && (tbxAddress.Text != string.Empty) &&
@@ -190,17 +194,24 @@ namespace MoviesAssessmentJane
         }
 
         private void btnDeleteCust_Click(object sender, EventArgs e)
-        {
-            string CustID = tbxCustID.Text;
+        { //check before deleting  - for some reason two strings are needed to make this work.
+                DialogResult dialogueResult = MessageBox.Show("Are you sure you want to delete this Customer's details?","", MessageBoxButtons.OKCancel);
+
+            if (dialogueResult == DialogResult.OK)
+            {//then go ahead and delete
+                string CustID = tbxCustID.Text;
             //string result = null;
             MessageBox.Show(myDatabase.DeleteCustomer(CustID));
             DisplayDataGridViewCustomer();
             ClearAllTextBoxes(this);
+            }
+            //otherwise, if it is 'cancel' it doesn't delete
+            
 
         }
 
         private void dgvMovies_CellContentClick_1(object sender, DataGridViewCellEventArgs e)
-        {
+        {//display the movie information of the movie clicked on in the text boxes
             int MovieID = 0;
             int Year = 0;
             try
@@ -235,7 +246,7 @@ namespace MoviesAssessmentJane
         }
 
         public string Cost(string MovieYear)
-        {
+        {//Work out the cost of the movies based on the year they were released
             int Yearnow = (Convert.ToInt32(DateTime.Now.Year));
             int YearsOld = Yearnow - Convert.ToInt32(MovieYear);
             if (YearsOld <= 5)
@@ -286,11 +297,17 @@ namespace MoviesAssessmentJane
 
         private void btnDelMovie_Click(object sender, EventArgs e)
         {
-            string MovieID = tbxMovieID.Text;
-            //string result = null;
-            MessageBox.Show(myDatabase.DeleteMovie(MovieID));
-            DisplayDataGridViewMovie();
-            ClearAllTextBoxes(this);
+            DialogResult dialogueResult = MessageBox.Show("Are you sure you want to delete this Movie?", "",
+                MessageBoxButtons.OKCancel);
+
+            if (dialogueResult == DialogResult.OK)
+            {
+                string MovieID = tbxMovieID.Text;
+                //string result = null;
+                MessageBox.Show(myDatabase.DeleteMovie(MovieID));
+                DisplayDataGridViewMovie();
+                ClearAllTextBoxes(this);
+            }
         }
 
         private void btnUpdateMovie_Click(object sender, EventArgs e)
@@ -305,6 +322,7 @@ namespace MoviesAssessmentJane
                     result = myDatabase.InsertorUpdateMovie(tbxRating.Text, tbxTitle.Text, tbxYear.Text, tbxPlot.Text,
                         tbxGenre.Text, tbxMovieID.Text, tbxCost.Text, "Update");
                     MessageBox.Show(tbxTitle.Text + " updated " + result);
+                    tbxScreen.Text = tbxTitle.Text;
                 }
                 catch (Exception a)
                 {

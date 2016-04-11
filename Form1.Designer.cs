@@ -31,55 +31,56 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.tabCustomers = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.lblCustID = new System.Windows.Forms.Label();
             this.dgvCustomer = new System.Windows.Forms.DataGridView();
+            this.btnAddCustomer = new System.Windows.Forms.Button();
+            this.btnUpdateCust = new System.Windows.Forms.Button();
+            this.btnDeleteCust = new System.Windows.Forms.Button();
+            this.tbxCustID = new System.Windows.Forms.TextBox();
+            this.lblFN = new System.Windows.Forms.Label();
+            this.tbxFN = new System.Windows.Forms.TextBox();
+            this.lblLN = new System.Windows.Forms.Label();
+            this.tbxLN = new System.Windows.Forms.TextBox();
+            this.lblAddress = new System.Windows.Forms.Label();
+            this.tbxAddress = new System.Windows.Forms.TextBox();
+            this.lblPhone = new System.Windows.Forms.Label();
+            this.tbxPhone = new System.Windows.Forms.TextBox();
             this.tabRentedMovies = new System.Windows.Forms.TabPage();
+            this.lbxRMID = new System.Windows.Forms.Label();
             this.tbxRMID = new System.Windows.Forms.TextBox();
             this.btnAllMoviesIssued = new System.Windows.Forms.Button();
             this.btnMoviesOut = new System.Windows.Forms.Button();
             this.dgvRentedMovies = new System.Windows.Forms.DataGridView();
             this.tabMovies = new System.Windows.Forms.TabPage();
+            this.tbxMovieInstructions = new System.Windows.Forms.TextBox();
+            this.lblMovieID = new System.Windows.Forms.Label();
             this.dgvMovies = new System.Windows.Forms.DataGridView();
-            this.tabQueries = new System.Windows.Forms.TabPage();
-            this.btnMostPopular = new System.Windows.Forms.Button();
-            this.btnMostVideos = new System.Windows.Forms.Button();
-            this.tbxFN = new System.Windows.Forms.TextBox();
-            this.tbxLN = new System.Windows.Forms.TextBox();
-            this.tbxAddress = new System.Windows.Forms.TextBox();
-            this.tbxPhone = new System.Windows.Forms.TextBox();
-            this.lblFN = new System.Windows.Forms.Label();
-            this.lblLN = new System.Windows.Forms.Label();
-            this.lblAddress = new System.Windows.Forms.Label();
-            this.lblPhone = new System.Windows.Forms.Label();
-            this.btnAddCustomer = new System.Windows.Forms.Button();
-            this.tbxCustID = new System.Windows.Forms.TextBox();
-            this.btnUpdateCust = new System.Windows.Forms.Button();
-            this.btnDeleteCust = new System.Windows.Forms.Button();
             this.btnAddMovie = new System.Windows.Forms.Button();
-            this.btnDelMovie = new System.Windows.Forms.Button();
             this.btnUpdateMovie = new System.Windows.Forms.Button();
+            this.btnDelMovie = new System.Windows.Forms.Button();
+            this.tbxRating = new System.Windows.Forms.TextBox();
+            this.tbxCost = new System.Windows.Forms.TextBox();
+            this.lblCost = new System.Windows.Forms.Label();
+            this.Rating = new System.Windows.Forms.Label();
+            this.lblTitle = new System.Windows.Forms.Label();
+            this.lblPlot = new System.Windows.Forms.Label();
+            this.tbxPlot = new System.Windows.Forms.TextBox();
             this.tbxMovieID = new System.Windows.Forms.TextBox();
             this.tbxTitle = new System.Windows.Forms.TextBox();
-            this.lblTitle = new System.Windows.Forms.Label();
+            this.tbxGenre = new System.Windows.Forms.TextBox();
             this.lblYear = new System.Windows.Forms.Label();
             this.lblGenre = new System.Windows.Forms.Label();
             this.tbxYear = new System.Windows.Forms.TextBox();
-            this.tbxGenre = new System.Windows.Forms.TextBox();
-            this.tbxCost = new System.Windows.Forms.TextBox();
-            this.lblCost = new System.Windows.Forms.Label();
+            this.tabQueries = new System.Windows.Forms.TabPage();
+            this.btnMostPopular = new System.Windows.Forms.Button();
+            this.btnMostVideos = new System.Windows.Forms.Button();
             this.btnClear = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.tbxPlot = new System.Windows.Forms.TextBox();
-            this.tbxRating = new System.Windows.Forms.TextBox();
-            this.lblPlot = new System.Windows.Forms.Label();
-            this.Rating = new System.Windows.Forms.Label();
             this.btnIssue = new System.Windows.Forms.Button();
             this.btnReturn = new System.Windows.Forms.Button();
             this.tbxScreen = new System.Windows.Forms.TextBox();
             this.lbxScreen = new System.Windows.Forms.ListBox();
-            this.lblCustID = new System.Windows.Forms.Label();
-            this.lbxRMID = new System.Windows.Forms.Label();
-            this.lblMovieID = new System.Windows.Forms.Label();
-            this.tbxMovieInstructions = new System.Windows.Forms.TextBox();
+            this.tbxCustInstructions = new System.Windows.Forms.TextBox();
             this.tabCustomers.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCustomer)).BeginInit();
@@ -105,6 +106,7 @@
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.tbxCustInstructions);
             this.tabPage1.Controls.Add(this.lblCustID);
             this.tabPage1.Controls.Add(this.dgvCustomer);
             this.tabPage1.Controls.Add(this.btnAddCustomer);
@@ -127,14 +129,130 @@
             this.tabPage1.Text = "Customers";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
+            // lblCustID
+            // 
+            this.lblCustID.AutoSize = true;
+            this.lblCustID.Location = new System.Drawing.Point(298, 448);
+            this.lblCustID.Name = "lblCustID";
+            this.lblCustID.Size = new System.Drawing.Size(42, 13);
+            this.lblCustID.TabIndex = 38;
+            this.lblCustID.Text = "Cust ID";
+            // 
             // dgvCustomer
             // 
             this.dgvCustomer.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvCustomer.Location = new System.Drawing.Point(6, 3);
             this.dgvCustomer.Name = "dgvCustomer";
-            this.dgvCustomer.Size = new System.Drawing.Size(723, 393);
+            this.dgvCustomer.Size = new System.Drawing.Size(723, 380);
             this.dgvCustomer.TabIndex = 0;
             this.dgvCustomer.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvCustomer_CellContentClick);
+            // 
+            // btnAddCustomer
+            // 
+            this.btnAddCustomer.BackColor = System.Drawing.Color.Lime;
+            this.btnAddCustomer.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAddCustomer.Location = new System.Drawing.Point(6, 449);
+            this.btnAddCustomer.Name = "btnAddCustomer";
+            this.btnAddCustomer.Size = new System.Drawing.Size(92, 49);
+            this.btnAddCustomer.TabIndex = 9;
+            this.btnAddCustomer.Text = " Add Customer";
+            this.btnAddCustomer.UseVisualStyleBackColor = false;
+            this.btnAddCustomer.Click += new System.EventHandler(this.btnAddCustomer_Click);
+            // 
+            // btnUpdateCust
+            // 
+            this.btnUpdateCust.BackColor = System.Drawing.Color.Orange;
+            this.btnUpdateCust.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnUpdateCust.Location = new System.Drawing.Point(104, 449);
+            this.btnUpdateCust.Name = "btnUpdateCust";
+            this.btnUpdateCust.Size = new System.Drawing.Size(92, 49);
+            this.btnUpdateCust.TabIndex = 11;
+            this.btnUpdateCust.Text = "Update Customer";
+            this.btnUpdateCust.UseVisualStyleBackColor = false;
+            this.btnUpdateCust.Click += new System.EventHandler(this.btnUpdateCust_Click);
+            // 
+            // btnDeleteCust
+            // 
+            this.btnDeleteCust.BackColor = System.Drawing.Color.Red;
+            this.btnDeleteCust.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnDeleteCust.Location = new System.Drawing.Point(202, 449);
+            this.btnDeleteCust.Name = "btnDeleteCust";
+            this.btnDeleteCust.Size = new System.Drawing.Size(92, 47);
+            this.btnDeleteCust.TabIndex = 12;
+            this.btnDeleteCust.Text = "Delete Customer";
+            this.btnDeleteCust.UseVisualStyleBackColor = false;
+            this.btnDeleteCust.Click += new System.EventHandler(this.btnDeleteCust_Click);
+            // 
+            // tbxCustID
+            // 
+            this.tbxCustID.Location = new System.Drawing.Point(301, 464);
+            this.tbxCustID.Name = "tbxCustID";
+            this.tbxCustID.Size = new System.Drawing.Size(39, 20);
+            this.tbxCustID.TabIndex = 10;
+            // 
+            // lblFN
+            // 
+            this.lblFN.AutoSize = true;
+            this.lblFN.Location = new System.Drawing.Point(451, 409);
+            this.lblFN.Name = "lblFN";
+            this.lblFN.Size = new System.Drawing.Size(57, 13);
+            this.lblFN.TabIndex = 5;
+            this.lblFN.Text = "First Name";
+            // 
+            // tbxFN
+            // 
+            this.tbxFN.Location = new System.Drawing.Point(448, 425);
+            this.tbxFN.Name = "tbxFN";
+            this.tbxFN.Size = new System.Drawing.Size(134, 20);
+            this.tbxFN.TabIndex = 1;
+            // 
+            // lblLN
+            // 
+            this.lblLN.AutoSize = true;
+            this.lblLN.Location = new System.Drawing.Point(588, 408);
+            this.lblLN.Name = "lblLN";
+            this.lblLN.Size = new System.Drawing.Size(49, 13);
+            this.lblLN.TabIndex = 6;
+            this.lblLN.Text = "Surname";
+            // 
+            // tbxLN
+            // 
+            this.tbxLN.Location = new System.Drawing.Point(585, 425);
+            this.tbxLN.Name = "tbxLN";
+            this.tbxLN.Size = new System.Drawing.Size(131, 20);
+            this.tbxLN.TabIndex = 2;
+            // 
+            // lblAddress
+            // 
+            this.lblAddress.AutoSize = true;
+            this.lblAddress.Location = new System.Drawing.Point(401, 448);
+            this.lblAddress.Name = "lblAddress";
+            this.lblAddress.Size = new System.Drawing.Size(45, 13);
+            this.lblAddress.TabIndex = 7;
+            this.lblAddress.Text = "Address";
+            // 
+            // tbxAddress
+            // 
+            this.tbxAddress.Location = new System.Drawing.Point(398, 464);
+            this.tbxAddress.Name = "tbxAddress";
+            this.tbxAddress.Size = new System.Drawing.Size(209, 20);
+            this.tbxAddress.TabIndex = 3;
+            // 
+            // lblPhone
+            // 
+            this.lblPhone.AutoSize = true;
+            this.lblPhone.Location = new System.Drawing.Point(618, 449);
+            this.lblPhone.Name = "lblPhone";
+            this.lblPhone.Size = new System.Drawing.Size(38, 13);
+            this.lblPhone.TabIndex = 8;
+            this.lblPhone.Text = "Phone";
+            // 
+            // tbxPhone
+            // 
+            this.tbxPhone.Location = new System.Drawing.Point(616, 464);
+            this.tbxPhone.Name = "tbxPhone";
+            this.tbxPhone.Size = new System.Drawing.Size(99, 20);
+            this.tbxPhone.TabIndex = 4;
             // 
             // tabRentedMovies
             // 
@@ -150,6 +268,15 @@
             this.tabRentedMovies.TabIndex = 1;
             this.tabRentedMovies.Text = "Rented Movies";
             this.tabRentedMovies.UseVisualStyleBackColor = true;
+            // 
+            // lbxRMID
+            // 
+            this.lbxRMID.AutoSize = true;
+            this.lbxRMID.Location = new System.Drawing.Point(23, 437);
+            this.lbxRMID.Name = "lbxRMID";
+            this.lbxRMID.Size = new System.Drawing.Size(35, 13);
+            this.lbxRMID.TabIndex = 4;
+            this.lbxRMID.Text = "RMID";
             // 
             // tbxRMID
             // 
@@ -219,6 +346,24 @@
             this.tabMovies.Text = "Movies";
             this.tabMovies.UseVisualStyleBackColor = true;
             // 
+            // tbxMovieInstructions
+            // 
+            this.tbxMovieInstructions.Location = new System.Drawing.Point(10, 344);
+            this.tbxMovieInstructions.Multiline = true;
+            this.tbxMovieInstructions.Name = "tbxMovieInstructions";
+            this.tbxMovieInstructions.Size = new System.Drawing.Size(395, 86);
+            this.tbxMovieInstructions.TabIndex = 35;
+            this.tbxMovieInstructions.Text = resources.GetString("tbxMovieInstructions.Text");
+            // 
+            // lblMovieID
+            // 
+            this.lblMovieID.AutoSize = true;
+            this.lblMovieID.Location = new System.Drawing.Point(376, 459);
+            this.lblMovieID.Name = "lblMovieID";
+            this.lblMovieID.Size = new System.Drawing.Size(50, 13);
+            this.lblMovieID.TabIndex = 34;
+            this.lblMovieID.Text = "Movie ID";
+            // 
             // dgvMovies
             // 
             this.dgvMovies.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -227,145 +372,6 @@
             this.dgvMovies.Size = new System.Drawing.Size(726, 320);
             this.dgvMovies.TabIndex = 0;
             this.dgvMovies.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvMovies_CellContentClick_1);
-            // 
-            // tabQueries
-            // 
-            this.tabQueries.Controls.Add(this.btnMostPopular);
-            this.tabQueries.Controls.Add(this.btnMostVideos);
-            this.tabQueries.Location = new System.Drawing.Point(4, 22);
-            this.tabQueries.Name = "tabQueries";
-            this.tabQueries.Padding = new System.Windows.Forms.Padding(3);
-            this.tabQueries.Size = new System.Drawing.Size(732, 420);
-            this.tabQueries.TabIndex = 3;
-            this.tabQueries.Text = "Queries";
-            this.tabQueries.UseVisualStyleBackColor = true;
-            // 
-            // btnMostPopular
-            // 
-            this.btnMostPopular.Location = new System.Drawing.Point(66, 119);
-            this.btnMostPopular.Name = "btnMostPopular";
-            this.btnMostPopular.Size = new System.Drawing.Size(99, 47);
-            this.btnMostPopular.TabIndex = 1;
-            this.btnMostPopular.Text = "Which is most popular movie?";
-            this.btnMostPopular.UseVisualStyleBackColor = true;
-            this.btnMostPopular.Click += new System.EventHandler(this.btnMostPopular_Click);
-            // 
-            // btnMostVideos
-            // 
-            this.btnMostVideos.Location = new System.Drawing.Point(64, 39);
-            this.btnMostVideos.Name = "btnMostVideos";
-            this.btnMostVideos.Size = new System.Drawing.Size(101, 51);
-            this.btnMostVideos.TabIndex = 0;
-            this.btnMostVideos.Text = "Who has rented most movies?";
-            this.btnMostVideos.UseVisualStyleBackColor = true;
-            this.btnMostVideos.Click += new System.EventHandler(this.btnMostVideos_Click);
-            // 
-            // tbxFN
-            // 
-            this.tbxFN.Location = new System.Drawing.Point(179, 416);
-            this.tbxFN.Name = "tbxFN";
-            this.tbxFN.Size = new System.Drawing.Size(95, 20);
-            this.tbxFN.TabIndex = 1;
-            // 
-            // tbxLN
-            // 
-            this.tbxLN.Location = new System.Drawing.Point(281, 416);
-            this.tbxLN.Name = "tbxLN";
-            this.tbxLN.Size = new System.Drawing.Size(93, 20);
-            this.tbxLN.TabIndex = 2;
-            // 
-            // tbxAddress
-            // 
-            this.tbxAddress.Location = new System.Drawing.Point(389, 416);
-            this.tbxAddress.Name = "tbxAddress";
-            this.tbxAddress.Size = new System.Drawing.Size(139, 20);
-            this.tbxAddress.TabIndex = 3;
-            // 
-            // tbxPhone
-            // 
-            this.tbxPhone.Location = new System.Drawing.Point(534, 416);
-            this.tbxPhone.Name = "tbxPhone";
-            this.tbxPhone.Size = new System.Drawing.Size(99, 20);
-            this.tbxPhone.TabIndex = 4;
-            // 
-            // lblFN
-            // 
-            this.lblFN.AutoSize = true;
-            this.lblFN.Location = new System.Drawing.Point(182, 400);
-            this.lblFN.Name = "lblFN";
-            this.lblFN.Size = new System.Drawing.Size(57, 13);
-            this.lblFN.TabIndex = 5;
-            this.lblFN.Text = "First Name";
-            // 
-            // lblLN
-            // 
-            this.lblLN.AutoSize = true;
-            this.lblLN.Location = new System.Drawing.Point(284, 399);
-            this.lblLN.Name = "lblLN";
-            this.lblLN.Size = new System.Drawing.Size(49, 13);
-            this.lblLN.TabIndex = 6;
-            this.lblLN.Text = "Surname";
-            // 
-            // lblAddress
-            // 
-            this.lblAddress.AutoSize = true;
-            this.lblAddress.Location = new System.Drawing.Point(392, 400);
-            this.lblAddress.Name = "lblAddress";
-            this.lblAddress.Size = new System.Drawing.Size(45, 13);
-            this.lblAddress.TabIndex = 7;
-            this.lblAddress.Text = "Address";
-            // 
-            // lblPhone
-            // 
-            this.lblPhone.AutoSize = true;
-            this.lblPhone.Location = new System.Drawing.Point(536, 401);
-            this.lblPhone.Name = "lblPhone";
-            this.lblPhone.Size = new System.Drawing.Size(38, 13);
-            this.lblPhone.TabIndex = 8;
-            this.lblPhone.Text = "Phone";
-            // 
-            // btnAddCustomer
-            // 
-            this.btnAddCustomer.BackColor = System.Drawing.Color.Lime;
-            this.btnAddCustomer.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAddCustomer.Location = new System.Drawing.Point(6, 449);
-            this.btnAddCustomer.Name = "btnAddCustomer";
-            this.btnAddCustomer.Size = new System.Drawing.Size(92, 49);
-            this.btnAddCustomer.TabIndex = 9;
-            this.btnAddCustomer.Text = " Add Customer";
-            this.btnAddCustomer.UseVisualStyleBackColor = false;
-            this.btnAddCustomer.Click += new System.EventHandler(this.btnAddCustomer_Click);
-            // 
-            // tbxCustID
-            // 
-            this.tbxCustID.Location = new System.Drawing.Point(116, 416);
-            this.tbxCustID.Name = "tbxCustID";
-            this.tbxCustID.Size = new System.Drawing.Size(39, 20);
-            this.tbxCustID.TabIndex = 10;
-            // 
-            // btnUpdateCust
-            // 
-            this.btnUpdateCust.BackColor = System.Drawing.Color.Orange;
-            this.btnUpdateCust.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnUpdateCust.Location = new System.Drawing.Point(104, 449);
-            this.btnUpdateCust.Name = "btnUpdateCust";
-            this.btnUpdateCust.Size = new System.Drawing.Size(92, 49);
-            this.btnUpdateCust.TabIndex = 11;
-            this.btnUpdateCust.Text = "Update Customer";
-            this.btnUpdateCust.UseVisualStyleBackColor = false;
-            this.btnUpdateCust.Click += new System.EventHandler(this.btnUpdateCust_Click);
-            // 
-            // btnDeleteCust
-            // 
-            this.btnDeleteCust.BackColor = System.Drawing.Color.Red;
-            this.btnDeleteCust.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnDeleteCust.Location = new System.Drawing.Point(202, 449);
-            this.btnDeleteCust.Name = "btnDeleteCust";
-            this.btnDeleteCust.Size = new System.Drawing.Size(92, 47);
-            this.btnDeleteCust.TabIndex = 12;
-            this.btnDeleteCust.Text = "Delete Customer";
-            this.btnDeleteCust.UseVisualStyleBackColor = false;
-            this.btnDeleteCust.Click += new System.EventHandler(this.btnDeleteCust_Click);
             // 
             // btnAddMovie
             // 
@@ -379,6 +385,18 @@
             this.btnAddMovie.UseVisualStyleBackColor = false;
             this.btnAddMovie.Click += new System.EventHandler(this.btnAddMovie_Click);
             // 
+            // btnUpdateMovie
+            // 
+            this.btnUpdateMovie.BackColor = System.Drawing.Color.Orange;
+            this.btnUpdateMovie.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnUpdateMovie.Location = new System.Drawing.Point(101, 441);
+            this.btnUpdateMovie.Name = "btnUpdateMovie";
+            this.btnUpdateMovie.Size = new System.Drawing.Size(92, 60);
+            this.btnUpdateMovie.TabIndex = 15;
+            this.btnUpdateMovie.Text = "Update Movie";
+            this.btnUpdateMovie.UseVisualStyleBackColor = false;
+            this.btnUpdateMovie.Click += new System.EventHandler(this.btnUpdateMovie_Click);
+            // 
             // btnDelMovie
             // 
             this.btnDelMovie.BackColor = System.Drawing.Color.Red;
@@ -391,17 +409,64 @@
             this.btnDelMovie.UseVisualStyleBackColor = false;
             this.btnDelMovie.Click += new System.EventHandler(this.btnDelMovie_Click);
             // 
-            // btnUpdateMovie
+            // tbxRating
             // 
-            this.btnUpdateMovie.BackColor = System.Drawing.Color.Orange;
-            this.btnUpdateMovie.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnUpdateMovie.Location = new System.Drawing.Point(101, 441);
-            this.btnUpdateMovie.Name = "btnUpdateMovie";
-            this.btnUpdateMovie.Size = new System.Drawing.Size(92, 60);
-            this.btnUpdateMovie.TabIndex = 15;
-            this.btnUpdateMovie.Text = "Update Movie";
-            this.btnUpdateMovie.UseVisualStyleBackColor = false;
-            this.btnUpdateMovie.Click += new System.EventHandler(this.btnUpdateMovie_Click);
+            this.tbxRating.Location = new System.Drawing.Point(581, 393);
+            this.tbxRating.Name = "tbxRating";
+            this.tbxRating.Size = new System.Drawing.Size(42, 20);
+            this.tbxRating.TabIndex = 30;
+            // 
+            // tbxCost
+            // 
+            this.tbxCost.Location = new System.Drawing.Point(297, 481);
+            this.tbxCost.Name = "tbxCost";
+            this.tbxCost.Size = new System.Drawing.Size(55, 20);
+            this.tbxCost.TabIndex = 23;
+            // 
+            // lblCost
+            // 
+            this.lblCost.AutoSize = true;
+            this.lblCost.Location = new System.Drawing.Point(300, 466);
+            this.lblCost.Name = "lblCost";
+            this.lblCost.Size = new System.Drawing.Size(62, 13);
+            this.lblCost.TabIndex = 24;
+            this.lblCost.Text = "Rental Cost";
+            // 
+            // Rating
+            // 
+            this.Rating.AutoSize = true;
+            this.Rating.Location = new System.Drawing.Point(585, 377);
+            this.Rating.Name = "Rating";
+            this.Rating.Size = new System.Drawing.Size(38, 13);
+            this.Rating.TabIndex = 33;
+            this.Rating.Text = "Rating";
+            // 
+            // lblTitle
+            // 
+            this.lblTitle.AutoSize = true;
+            this.lblTitle.Location = new System.Drawing.Point(419, 339);
+            this.lblTitle.Name = "lblTitle";
+            this.lblTitle.Size = new System.Drawing.Size(27, 13);
+            this.lblTitle.TabIndex = 18;
+            this.lblTitle.Text = "Title";
+            // 
+            // lblPlot
+            // 
+            this.lblPlot.AutoSize = true;
+            this.lblPlot.Location = new System.Drawing.Point(458, 417);
+            this.lblPlot.Name = "lblPlot";
+            this.lblPlot.Size = new System.Drawing.Size(25, 13);
+            this.lblPlot.TabIndex = 32;
+            this.lblPlot.Text = "Plot";
+            // 
+            // tbxPlot
+            // 
+            this.tbxPlot.Location = new System.Drawing.Point(455, 431);
+            this.tbxPlot.Multiline = true;
+            this.tbxPlot.Name = "tbxPlot";
+            this.tbxPlot.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+            this.tbxPlot.Size = new System.Drawing.Size(274, 64);
+            this.tbxPlot.TabIndex = 29;
             // 
             // tbxMovieID
             // 
@@ -417,14 +482,12 @@
             this.tbxTitle.Size = new System.Drawing.Size(313, 20);
             this.tbxTitle.TabIndex = 17;
             // 
-            // lblTitle
+            // tbxGenre
             // 
-            this.lblTitle.AutoSize = true;
-            this.lblTitle.Location = new System.Drawing.Point(419, 339);
-            this.lblTitle.Name = "lblTitle";
-            this.lblTitle.Size = new System.Drawing.Size(27, 13);
-            this.lblTitle.TabIndex = 18;
-            this.lblTitle.Text = "Title";
+            this.tbxGenre.Location = new System.Drawing.Point(492, 393);
+            this.tbxGenre.Name = "tbxGenre";
+            this.tbxGenre.Size = new System.Drawing.Size(64, 20);
+            this.tbxGenre.TabIndex = 22;
             // 
             // lblYear
             // 
@@ -451,28 +514,37 @@
             this.tbxYear.Size = new System.Drawing.Size(52, 20);
             this.tbxYear.TabIndex = 21;
             // 
-            // tbxGenre
+            // tabQueries
             // 
-            this.tbxGenre.Location = new System.Drawing.Point(492, 393);
-            this.tbxGenre.Name = "tbxGenre";
-            this.tbxGenre.Size = new System.Drawing.Size(64, 20);
-            this.tbxGenre.TabIndex = 22;
+            this.tabQueries.Controls.Add(this.btnMostPopular);
+            this.tabQueries.Controls.Add(this.btnMostVideos);
+            this.tabQueries.Location = new System.Drawing.Point(4, 22);
+            this.tabQueries.Name = "tabQueries";
+            this.tabQueries.Padding = new System.Windows.Forms.Padding(3);
+            this.tabQueries.Size = new System.Drawing.Size(732, 504);
+            this.tabQueries.TabIndex = 3;
+            this.tabQueries.Text = "Queries";
+            this.tabQueries.UseVisualStyleBackColor = true;
             // 
-            // tbxCost
+            // btnMostPopular
             // 
-            this.tbxCost.Location = new System.Drawing.Point(297, 481);
-            this.tbxCost.Name = "tbxCost";
-            this.tbxCost.Size = new System.Drawing.Size(55, 20);
-            this.tbxCost.TabIndex = 23;
+            this.btnMostPopular.Location = new System.Drawing.Point(66, 119);
+            this.btnMostPopular.Name = "btnMostPopular";
+            this.btnMostPopular.Size = new System.Drawing.Size(99, 47);
+            this.btnMostPopular.TabIndex = 1;
+            this.btnMostPopular.Text = "Which is most popular movie?";
+            this.btnMostPopular.UseVisualStyleBackColor = true;
+            this.btnMostPopular.Click += new System.EventHandler(this.btnMostPopular_Click);
             // 
-            // lblCost
+            // btnMostVideos
             // 
-            this.lblCost.AutoSize = true;
-            this.lblCost.Location = new System.Drawing.Point(300, 466);
-            this.lblCost.Name = "lblCost";
-            this.lblCost.Size = new System.Drawing.Size(62, 13);
-            this.lblCost.TabIndex = 24;
-            this.lblCost.Text = "Rental Cost";
+            this.btnMostVideos.Location = new System.Drawing.Point(64, 39);
+            this.btnMostVideos.Name = "btnMostVideos";
+            this.btnMostVideos.Size = new System.Drawing.Size(101, 51);
+            this.btnMostVideos.TabIndex = 0;
+            this.btnMostVideos.Text = "Who has rented most movies?";
+            this.btnMostVideos.UseVisualStyleBackColor = true;
+            this.btnMostVideos.Click += new System.EventHandler(this.btnMostVideos_Click);
             // 
             // btnClear
             // 
@@ -496,40 +568,6 @@
             this.pictureBox1.Size = new System.Drawing.Size(1335, 711);
             this.pictureBox1.TabIndex = 28;
             this.pictureBox1.TabStop = false;
-            // 
-            // tbxPlot
-            // 
-            this.tbxPlot.Location = new System.Drawing.Point(455, 431);
-            this.tbxPlot.Multiline = true;
-            this.tbxPlot.Name = "tbxPlot";
-            this.tbxPlot.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.tbxPlot.Size = new System.Drawing.Size(274, 64);
-            this.tbxPlot.TabIndex = 29;
-            // 
-            // tbxRating
-            // 
-            this.tbxRating.Location = new System.Drawing.Point(581, 393);
-            this.tbxRating.Name = "tbxRating";
-            this.tbxRating.Size = new System.Drawing.Size(42, 20);
-            this.tbxRating.TabIndex = 30;
-            // 
-            // lblPlot
-            // 
-            this.lblPlot.AutoSize = true;
-            this.lblPlot.Location = new System.Drawing.Point(458, 417);
-            this.lblPlot.Name = "lblPlot";
-            this.lblPlot.Size = new System.Drawing.Size(25, 13);
-            this.lblPlot.TabIndex = 32;
-            this.lblPlot.Text = "Plot";
-            // 
-            // Rating
-            // 
-            this.Rating.AutoSize = true;
-            this.Rating.Location = new System.Drawing.Point(585, 377);
-            this.Rating.Name = "Rating";
-            this.Rating.Size = new System.Drawing.Size(38, 13);
-            this.Rating.TabIndex = 33;
-            this.Rating.Text = "Rating";
             // 
             // btnIssue
             // 
@@ -581,41 +619,16 @@
             this.lbxScreen.TabStop = false;
             this.lbxScreen.Visible = false;
             // 
-            // lblCustID
+            // tbxCustInstructions
             // 
-            this.lblCustID.AutoSize = true;
-            this.lblCustID.Location = new System.Drawing.Point(113, 400);
-            this.lblCustID.Name = "lblCustID";
-            this.lblCustID.Size = new System.Drawing.Size(42, 13);
-            this.lblCustID.TabIndex = 38;
-            this.lblCustID.Text = "Cust ID";
-            // 
-            // lbxRMID
-            // 
-            this.lbxRMID.AutoSize = true;
-            this.lbxRMID.Location = new System.Drawing.Point(23, 437);
-            this.lbxRMID.Name = "lbxRMID";
-            this.lbxRMID.Size = new System.Drawing.Size(35, 13);
-            this.lbxRMID.TabIndex = 4;
-            this.lbxRMID.Text = "RMID";
-            // 
-            // lblMovieID
-            // 
-            this.lblMovieID.AutoSize = true;
-            this.lblMovieID.Location = new System.Drawing.Point(376, 459);
-            this.lblMovieID.Name = "lblMovieID";
-            this.lblMovieID.Size = new System.Drawing.Size(50, 13);
-            this.lblMovieID.TabIndex = 34;
-            this.lblMovieID.Text = "Movie ID";
-            // 
-            // tbxMovieInstructions
-            // 
-            this.tbxMovieInstructions.Location = new System.Drawing.Point(10, 344);
-            this.tbxMovieInstructions.Multiline = true;
-            this.tbxMovieInstructions.Name = "tbxMovieInstructions";
-            this.tbxMovieInstructions.Size = new System.Drawing.Size(395, 86);
-            this.tbxMovieInstructions.TabIndex = 35;
-            this.tbxMovieInstructions.Text = resources.GetString("tbxMovieInstructions.Text");
+            this.tbxCustInstructions.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbxCustInstructions.Location = new System.Drawing.Point(0, 389);
+            this.tbxCustInstructions.Multiline = true;
+            this.tbxCustInstructions.Name = "tbxCustInstructions";
+            this.tbxCustInstructions.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.tbxCustInstructions.Size = new System.Drawing.Size(421, 56);
+            this.tbxCustInstructions.TabIndex = 39;
+            this.tbxCustInstructions.Text = resources.GetString("tbxCustInstructions.Text");
             // 
             // Form1
             // 
@@ -702,6 +715,7 @@
         private System.Windows.Forms.Label lbxRMID;
         private System.Windows.Forms.TextBox tbxMovieInstructions;
         private System.Windows.Forms.Label lblMovieID;
+        private System.Windows.Forms.TextBox tbxCustInstructions;
     }
 }
 

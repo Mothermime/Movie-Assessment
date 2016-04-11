@@ -57,7 +57,7 @@ namespace MoviesAssessmentJane
             return dt;
         }
         public DataTable FilldgvRentedMovieswithInfo()
-        {//and above 
+        {//and above and below
             DataTable dt = new DataTable();
             using (da = new SqlDataAdapter("select * from IssuesReturns", Connection))
             {
@@ -69,7 +69,7 @@ namespace MoviesAssessmentJane
         }
 
         public DataTable FilldgvRentedMovieswithMoviesOut()
-        {
+        {//and again - filling the data table querying a view
             DataTable dt = new DataTable();
             using (da = new SqlDataAdapter("select * from NotReturned", Connection))
             {
@@ -217,7 +217,7 @@ namespace MoviesAssessmentJane
 
             }
             catch (Exception b)
-            {//or unsuccessful
+            {//or unsuccessful with the reason
                 Connection.Close();
                 return " has failed with " + b;
             }
@@ -246,31 +246,45 @@ namespace MoviesAssessmentJane
             }
         }
 
-        public bool ConnectionUnitTest()
-        {//method for unit test to test connection (strange as that may seem!)
-            DataTable dt = new DataTable();
-            try
-            {
-               
-                using (da = new SqlDataAdapter("select * from Movies", Connection))
-                {
-                    Connection.Open();
-                    da.Fill(dt);
-                    Connection.Close();
-                }
-                return true;
-            }
-            catch (Exception)
-            {
+        public string IssueMovie(string CustIDFK, string MovieIDFK )
+        {// using a stored procedure - safer allows no interference
+            using (SqlCommand cmd = Connection.CreateCommand())
+            {// parameters "provide data to you SQL statement" gives an extra layer of protection.  I can understand how but can't quite 'explain it to the rubber ducky'!
+            //Parameters input a specific value.  Thank you Gary
+                cmd.CommandText = "MovieIssue";
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@CustIDFK", CustIDFK);
+                cmd.Parameters.AddWithValue("@MovieIDFK", MovieIDFK);
+                cmd.Parameters.AddWithValue("@DateRented", DateTime.Now);
+                //Greet the Database - open the book
+                Connection.Open();
+                //Ask it a question
+                cmd.ExecuteNonQuery();
+                //Say goodbye, close the book
                 Connection.Close();
-                return false;
             }
+            return "Issued";
+        }
+        //As above
+        public string ReturnMovie(string RMID)
+        {
+            using (SqlCommand cmd = Connection.CreateCommand())
+            {
+                cmd.CommandText = "ReturnMovie";
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@RMID", RMID);
+                cmd.Parameters.AddWithValue("@DateReturned", DateTime.Now);
+                Connection.Open();
+                cmd.ExecuteNonQuery();
+                Connection.Close();
+            }
+            return "Movie Returned";
         }
 
         public List<string> FillListViewwithMostPopularMovies()
-            //returns a list
+        //returns a list
 
-            // try
+        // try
         {
             var myCommand = new SqlCommand();
             myCommand = new SqlCommand("select * from MaxMostPopular", Connection);
@@ -297,20 +311,20 @@ namespace MoviesAssessmentJane
         }
 
         public List<string> RentedMostMovies()
-            {
+        {
             var myCommand = new SqlCommand();
-        myCommand = new SqlCommand("select Top (1) FirstName, LastName from IssueCount", Connection);
-        // da = new SqlDataAdapter(SQL, Connection);
-        //DataTable dt = new DataTable();
-        List<string> newIssueCount = new List<string>();
-        Connection.Open();
+            myCommand = new SqlCommand("select Top (1) FirstName, LastName from IssueCount", Connection);
+            // da = new SqlDataAdapter(SQL, Connection);
+            //DataTable dt = new DataTable();
+            List<string> newIssueCount = new List<string>();
+            Connection.Open();
             // da.Fill(dt);
             SqlDataReader reader = myCommand.ExecuteReader();
             if (reader.HasRows)
             {
                 while (reader.Read())
                 {
-                    newIssueCount.Add(reader["FirstName"].ToString()+ " " +(reader["LastName"].ToString()));
+                    newIssueCount.Add(reader["FirstName"].ToString() + " " + (reader["LastName"].ToString()));
                 }
             }
             reader.Close();
@@ -318,39 +332,27 @@ namespace MoviesAssessmentJane
             return newIssueCount;
         }
 
-       
 
-        public string IssueMovie(string CustIDFK, string MovieIDFK )
-        {
-            using (SqlCommand cmd = Connection.CreateCommand())
+        public bool ConnectionUnitTest()
+        {//method for unit test to test connection (strange as that may seem!)
+            DataTable dt = new DataTable();
+            try
             {
-                cmd.CommandText = "MovieIssue";
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@CustIDFK", CustIDFK);
-                cmd.Parameters.AddWithValue("@MovieIDFK", MovieIDFK);
-                cmd.Parameters.AddWithValue("@DateRented", DateTime.Now);
-                Connection.Open();
-                cmd.ExecuteNonQuery();
-                Connection.Close();
-            }
-            return "Issued";
-        }
 
-        public string ReturnMovie(string RMID)
-        {
-            using (SqlCommand cmd = Connection.CreateCommand())
+                using (da = new SqlDataAdapter("select * from Movies", Connection))
+                {
+                    Connection.Open();
+                    da.Fill(dt);
+                    Connection.Close();
+                }
+                return true;
+            }
+            catch (Exception)
             {
-                cmd.CommandText = "ReturnMovie";
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@RMID", RMID);
-                cmd.Parameters.AddWithValue("@DateReturned", DateTime.Now);
-                Connection.Open();
-                cmd.ExecuteNonQuery();
                 Connection.Close();
+                return false;
             }
-            return "Movie Returned";
         }
-
 
     }
 }
