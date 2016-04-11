@@ -86,6 +86,7 @@ namespace MoviesAssessmentJane
 
         private void dgvCustomer_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {//specify the layout of the dgv and what it will contain
+         // click event set to cell click raather than cell contennt click so that anywhere in the cell will activate command 
             int CustomerID = 0;
 
             try
@@ -191,7 +192,7 @@ namespace MoviesAssessmentJane
         }
 
         private void btnDeleteCust_Click(object sender, EventArgs e)
-        { //check before deleting  - for some reason two strings are needed to make this work.
+        { //check before deleting  - for some reason two strings are needed to make this work. Brings up a dialogue box to confirm deletion - an added measure of security
             DialogResult dialogueResult = MessageBox.Show("Are you sure you want to delete this Customer's details?","", MessageBoxButtons.OKCancel);
 
             if (dialogueResult == DialogResult.OK)
@@ -209,6 +210,7 @@ namespace MoviesAssessmentJane
 
         private void dgvMovies_CellContentClick_1(object sender, DataGridViewCellEventArgs e)
         {//display the movie information of the movie clicked on in the text boxes
+         // click event set to cell click raather than cell contennt click so that anywhere in the cell will activate command 
             int MovieID = 0;
             int Year = 0;
             try
@@ -241,7 +243,7 @@ namespace MoviesAssessmentJane
                 MessageBox.Show(ex.Message);
             }
         }
-
+        
         public string Cost(string MovieYear)
         {//Work out the cost of the movies based on the year they were released
             int Yearnow = (Convert.ToInt32(DateTime.Now.Year));
@@ -440,7 +442,8 @@ namespace MoviesAssessmentJane
 
 
             try
-            {
+            {// show the detalis in all the cells with the ability to click on them
+               // click event set to cell click raather than cell contennt click so that anywhere in the cell will activate command 
                 RMID = (int)dgvRentedMovies.Rows[e.RowIndex].Cells[0].Value;
                 
                 if (e.RowIndex >= 0)
