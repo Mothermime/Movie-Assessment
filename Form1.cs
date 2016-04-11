@@ -67,6 +67,15 @@ namespace MoviesAssessmentJane
             {
                 dgvRentedMovies.DataSource = myDatabase.FilldgvRentedMovieswithInfo();
                 dgvRentedMovies.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.AllCells);
+                this.dgvRentedMovies.DefaultCellStyle.ForeColor = Color.Black;
+
+                for (int i = 0; i < dgvRentedMovies.Rows.Count -1; i++)
+                {
+                if  ((dgvRentedMovies.Rows[i].Cells[7].FormattedValue.Equals(string.Empty )))
+                {
+                    dgvRentedMovies.Rows[i].DefaultCellStyle.ForeColor = Color.Red;
+                } }
+
             }
             catch (Exception ex)
             {
@@ -74,19 +83,6 @@ namespace MoviesAssessmentJane
             }
         }
 
-        private void MoviesStillOut()
-        {//load the view that has been created and fill the data grid view with a new set of information
-            dgvRentedMovies.DataSource = null;
-            try
-            {
-                dgvRentedMovies.DataSource = myDatabase.FilldgvRentedMovieswithMoviesOut();
-                dgvRentedMovies.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.AllCells);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-        }
 
         private void dgvCustomer_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {//specify the layout of the dgv and what it will contain
@@ -114,7 +110,7 @@ namespace MoviesAssessmentJane
         private void btnAddCustomer_Click(object sender, EventArgs e)
         {
             string result = null;
-            // if there's nothing in the specified text boxes
+            // if there's something in the specified text boxes
             if ((tbxFN.Text != string.Empty) && (tbxLN.Text != string.Empty) && (tbxAddress.Text != string.Empty) &&
                 (tbxPhone.Text != string.Empty))
             {
@@ -150,6 +146,7 @@ namespace MoviesAssessmentJane
 
         public void ClearAllTextBoxes(Control root)
         {
+            //method for above
             foreach (Control ctrl in root.Controls)
             {
                 if (ctrl is TextBox)
@@ -157,20 +154,20 @@ namespace MoviesAssessmentJane
                     ((TextBox) ctrl).Text = String.Empty;
                  
                 }
-              
+              //juggling boxes
                 lbxScreen.Visible = false;
             }
         }
 
         private void btnUpdateCust_Click(object sender, EventArgs e)
-        {//again, if the boxes 
+        {//again, if the boxes are not empty
             string result = null;
 
             if ((tbxFN.Text != string.Empty) && (tbxLN.Text != string.Empty) && (tbxAddress.Text != string.Empty) &&
                 (tbxPhone.Text != string.Empty))
             {
                 try
-                {
+                {//use the update command
                     result = myDatabase.InsertorUpdateCustomer(tbxFN.Text, tbxLN.Text, tbxAddress.Text, tbxPhone.Text,
                         tbxCustID.Text,
                         "Update");
@@ -188,14 +185,14 @@ namespace MoviesAssessmentJane
                 tbxPhone.Text = "";
             }
             else
-            {
-                MessageBox.Show("Are these the changes you wish to make?");
+            {  //message to
+                MessageBox.Show("Are these the changes you wish to make?", "", MessageBoxButtons.OKCancel);
             }
         }
 
         private void btnDeleteCust_Click(object sender, EventArgs e)
         { //check before deleting  - for some reason two strings are needed to make this work.
-                DialogResult dialogueResult = MessageBox.Show("Are you sure you want to delete this Customer's details?","", MessageBoxButtons.OKCancel);
+            DialogResult dialogueResult = MessageBox.Show("Are you sure you want to delete this Customer's details?","", MessageBoxButtons.OKCancel);
 
             if (dialogueResult == DialogResult.OK)
             {//then go ahead and delete
@@ -263,7 +260,7 @@ namespace MoviesAssessmentJane
         }
 
         private void btnAddMovie_Click(object sender, EventArgs e)
-        {
+        {//Same as for adding customer  - use the 'add' portion of the InsertUpdate method 
             string result = null;
 
             if ((tbxRating.Text != String.Empty) && (tbxTitle.Text != string.Empty) && (tbxYear.Text != string.Empty) &&
@@ -273,6 +270,7 @@ namespace MoviesAssessmentJane
                 {
                     result = myDatabase.InsertorUpdateMovie(tbxRating.Text, tbxTitle.Text, tbxYear.Text, tbxPlot.Text,
                         tbxGenre.Text, tbxMovieID.Text, tbxCost.Text, "Add");
+                    //show it has been successful in a message box
                     MessageBox.Show(tbxTitle.Text + " added " + result);
                 }
                 catch (Exception a)
@@ -280,6 +278,7 @@ namespace MoviesAssessmentJane
 
                     MessageBox.Show((a.Message));
                 }
+                //Show all the information in appropriate places
                 DisplayDataGridViewMovie();
                 tbxMovieID.Text = "";
                 tbxRating.Text = "";
@@ -296,7 +295,7 @@ namespace MoviesAssessmentJane
         }
 
         private void btnDelMovie_Click(object sender, EventArgs e)
-        {
+        {//Again a safety feature added to prevent an accidental deletion
             DialogResult dialogueResult = MessageBox.Show("Are you sure you want to delete this Movie?", "",
                 MessageBoxButtons.OKCancel);
 
@@ -306,12 +305,13 @@ namespace MoviesAssessmentJane
                 //string result = null;
                 MessageBox.Show(myDatabase.DeleteMovie(MovieID));
                 DisplayDataGridViewMovie();
+                //Clear all the information from the text boxes once the function has been completed
                 ClearAllTextBoxes(this);
             }
         }
 
         private void btnUpdateMovie_Click(object sender, EventArgs e)
-        {
+        {//same as update customers
             string result = null;
 
             if ((tbxRating.Text != String.Empty) && (tbxTitle.Text != string.Empty) && (tbxYear.Text != string.Empty) &&
@@ -340,42 +340,62 @@ namespace MoviesAssessmentJane
             }
             else
             {
-                MessageBox.Show("Are these the changes you wish to make?");
+                MessageBox.Show("Are these the changes you wish to make?","",MessageBoxButtons.OKCancel);
             }
         }
 
         private void btnMostPopular_Click(object sender, EventArgs e)
-        {
+        {//fill screen with the information from the MostPopular movie view
           lbxScreen.DataSource =  myDatabase.FillListViewwithMostPopularMovies();
          
-            
+            //make sure the boxes are the right way around to display as I want
             tbxScreen.Visible = false;
             lbxScreen.Visible = true;
         }
 
         private void btnMostVideos_Click(object sender, EventArgs e)
-        { //information comes from the RentedMostMOvies view
+        { //information comes from the RentedMostMvies view
             lbxScreen.DataSource = myDatabase.RentedMostMovies();
             tbxScreen.Visible = false;
             lbxScreen.Visible = true;
         }
 
+        private void MoviesStillOut()
+        {//load the view that has been created using information from the created view and fill the data grid view with a new set of information
+            dgvRentedMovies.DataSource = null;
+            try
+            {
+                dgvRentedMovies.DataSource = myDatabase.FilldgvRentedMovieswithMoviesOut();
+                dgvRentedMovies.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.AllCells);
+                //
+                this.dgvRentedMovies.DefaultCellStyle.ForeColor = Color.Red;
+
+                //this works, now how to apply it in the 'all movies out' part
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
         private void btnMoviesOut_Click(object sender, EventArgs e)
-        {
+        {//calling the method from above
             MoviesStillOut();
         }
 
         private void btnAllMoviesIssued_Click(object sender, EventArgs e)
-        {
+        {//Speaks for itself
             DisplayDataGridViewRentedMovies();
-        }
+
+        
+                
+            }
 
         private void btnIssue_Click(object sender, EventArgs e)
         {
             string result = null;
-
+            //If a movie and customer has been selected
             if ((tbxCustID.Text != string.Empty) && (tbxMovieID.Text != string.Empty) )
-            {
+            {//then apply the method and give a message to display successs
                 try
                 {
                     result = myDatabase.IssueMovie(tbxCustID.Text, tbxMovieID.Text);
@@ -383,16 +403,17 @@ namespace MoviesAssessmentJane
                 }
                 catch (Exception a)
                 {
-
+                //or not
                     MessageBox.Show((a.Message));
                 }
                  DisplayDataGridViewRentedMovies();
+                //add the new issuing information to dgv
             tbxFN.Text = "";
             tbxLN.Text = "";
             tbxAddress.Text = "";
             tbxPhone.Text = "";
             tbxTitle.Text = "";
-                
+                //display the cost of the movie
                 tbxScreen.Text = ("$" + tbxCost.Text + " to pay.");
             }
             else
