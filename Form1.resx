@@ -117,14 +117,14 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="tbxMovieInstructions.Text" xml:space="preserve">
-    <value>To add a movie please put movie details into Title, Year, Genre, Rating and Plot boxes. Click the 'Add Movie' button.
-To update a movie please select it from the list and make the required changes.  Click the 'Update Movie' button.
-To Delete a movie, select it from the list and click the 'Delete' button.</value>
-  </data>
   <data name="tbxCustInstructions.Text" xml:space="preserve">
     <value>To add a customer please put customer details into boxes. Click the 'Add Customer button. An ID will automatically be added
 To update a customer's detail, select customer from list, make desired changes and click the 'Update Customer' button.
 To delete a customer's details, select customer form list and click the 'Delete Customer' button.</value>
+  </data>
+  <data name="tbxMovieInstructions.Text" xml:space="preserve">
+    <value>To add a movie please put movie details into Title, Year, Genre, Rating and Plot boxes. Click the 'Add Movie' button.
+To update a movie please select it from the list and make the required changes.  Click the 'Update Movie' button.
+To Delete a movie, select it from the list and click the 'Delete' button.</value>
   </data>
 </root>

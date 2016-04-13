@@ -69,21 +69,19 @@ namespace MoviesAssessmentJane
                 dgvRentedMovies.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.AllCells);
                 this.dgvRentedMovies.DefaultCellStyle.ForeColor = Color.Black;
 
-                for (int i = 0; i < dgvRentedMovies.Rows.Count -1; i++)
+                for (int i = 0; i < dgvRentedMovies.Rows.Count - 1; i++)
                 {
-                if  ((dgvRentedMovies.Rows[i].Cells[7].FormattedValue.Equals(string.Empty )))
-                {
-                    dgvRentedMovies.Rows[i].DefaultCellStyle.ForeColor = Color.Red;
-                } }
-
+                    if ((dgvRentedMovies.Rows[i].Cells[7].FormattedValue.Equals(string.Empty)))
+                    {
+                        dgvRentedMovies.Rows[i].DefaultCellStyle.ForeColor = Color.Red;
+                    }
+                }
             }
             catch (Exception ex)
             {
                MessageBox.Show(ex.Message);
             }
         }
-
-
         private void dgvCustomer_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {//specify the layout of the dgv and what it will contain
          // click event set to cell click raather than cell contennt click so that anywhere in the cell will activate command 
@@ -245,6 +243,7 @@ namespace MoviesAssessmentJane
         }
         
         public string Cost(string MovieYear)
+
         {//Work out the cost of the movies based on the year they were released
             int Yearnow = (Convert.ToInt32(DateTime.Now.Year));
             int YearsOld = Yearnow - Convert.ToInt32(MovieYear);
@@ -361,18 +360,62 @@ namespace MoviesAssessmentJane
             tbxScreen.Visible = false;
             lbxScreen.Visible = true;
         }
+        #region Working out 
+        //  first attempt to work out how to show movies are overdue
 
+        //public void Overdue(string RentalDay)
+        //{
+        //    dgvRentedMovies.DataSource = null;
+
+        //    int DayNow = (Convert.ToInt32(DateTime.Now.Day));
+
+        //    int DaysOut = DayNow - Convert.ToInt32(RentalDay);
+
+        //    if (DaysOut > 7)
+        //    {
+        //        tbxScreen.Text = "Overdue";
+        //        try
+        //        {
+        //            dgvRentedMovies.DataSource = myDatabase.FilldgvRentedMovieswithMoviesOut();
+        //            dgvRentedMovies.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.AllCells);
+        //            //
+
+        //            dgvRentedMovies.DefaultCellStyle.ForeColor = Color.DarkOrange;
+
+        //        }
+        //        catch (Exception ex)
+        //        {
+        //            MessageBox.Show(ex.Message);
+        //        }
+        //    }
+        //}
+        #endregion
         private void MoviesStillOut()
         {//load the view that has been created using information from the created view and fill the data grid view with a new set of information
             dgvRentedMovies.DataSource = null;
+            myDatabase.OverdueCust();
+            // instantiate list because it is a class in the background 
+            List<string> RMID = new List<string>();
+            
+            RMID.AddRange(myDatabase.OverdueCust()); 
+
             try
             {
                 dgvRentedMovies.DataSource = myDatabase.FilldgvRentedMovieswithMoviesOut();
                 dgvRentedMovies.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.AllCells);
-                //
-                this.dgvRentedMovies.DefaultCellStyle.ForeColor = Color.Red;
+                //set the colour of the main body of text
+
+                this.dgvRentedMovies.DefaultCellStyle.ForeColor = Color.Blue;
+                for (int i = 0; i < dgvRentedMovies.Rows.Count - 1; i++)
+                    if 
+                    (RMID.Contains(dgvRentedMovies.Rows[i].Cells[0].Value.ToString()))
+                {//highlight in red only the rows that contain the column containing the CustID that matches those in the Overdue view
+                       dgvRentedMovies.Rows[i].DefaultCellStyle.BackColor = Color.Red;
+                        dgvRentedMovies.Rows[i].DefaultCellStyle.ForeColor = Color.Black;
+                    }
 
                 //this works, now how to apply it in the 'all movies out' part
+                //random comment
             }
             catch (Exception ex)
             {
@@ -382,6 +425,7 @@ namespace MoviesAssessmentJane
         private void btnMoviesOut_Click(object sender, EventArgs e)
         {//calling the method from above
             MoviesStillOut();
+           
         }
 
         private void btnAllMoviesIssued_Click(object sender, EventArgs e)
@@ -456,6 +500,30 @@ namespace MoviesAssessmentJane
             {
                 MessageBox.Show(ex.Message);
             }
+        }
+        private void OverdueMovies()
+        {
+             dgvRentedMovies.DataSource = null;
+
+            try
+            {
+                dgvRentedMovies.DataSource = myDatabase.FilldgvRentedMoviesWithOverdueMovies();
+                dgvRentedMovies.AutoResizeColumns(DataGridViewAutoSizeColumnsMode.AllCells);
+                //
+
+                this.dgvRentedMovies.DefaultCellStyle.ForeColor = Color.Red;
+
+                //this works, now how to apply it in the 'all movies out' part
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+        private void btnOverdue_Click(object sender, EventArgs e)
+        {
+           OverdueMovies();
         }
     }      
 }

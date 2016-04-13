@@ -267,7 +267,7 @@ namespace MoviesAssessmentJane
         }
         //As above
         public string ReturnMovie(string RMID)
-        {
+        {//stored procedure
             using (SqlCommand cmd = Connection.CreateCommand())
             {
                 cmd.CommandText = "ReturnMovie";
@@ -310,6 +310,23 @@ namespace MoviesAssessmentJane
             return newMaxMostPopular;
         }
 
+        public List<string> OverdueCust()
+        {
+            var myCommand = new SqlCommand();
+            myCommand = new SqlCommand("select RMID from Overdue", Connection);
+
+            List<string> newOverdue = new List<string>();
+            Connection.Open();
+            SqlDataReader reader = myCommand.ExecuteReader();
+            if(reader.HasRows)
+                while (reader.Read())
+                {
+                    newOverdue.Add(reader["RMID"].ToString());
+                }
+            reader.Close();
+            Connection.Close();
+            return newOverdue;
+        } 
         public List<string> RentedMostMovies()
         {
             var myCommand = new SqlCommand();
@@ -323,7 +340,7 @@ namespace MoviesAssessmentJane
             if (reader.HasRows)
             {
                 while (reader.Read())
-                {
+                    {
                     newIssueCount.Add(reader["FirstName"].ToString() + " " + (reader["LastName"].ToString()));
                 }
             }
@@ -332,13 +349,23 @@ namespace MoviesAssessmentJane
             return newIssueCount;
         }
 
-
+        public DataTable FilldgvRentedMoviesWithOverdueMovies()
+        {//made a new view to show just the overdue items - based on movies out for more than 7 days
+           // and filled a new dgv with it
+            DataTable dt = new DataTable();
+            using (da = new SqlDataAdapter("select * from Overdue", Connection))
+            {
+                Connection.Open();
+                da.Fill(dt);
+                Connection.Close();
+            }
+            return dt;
+        }
         public bool ConnectionUnitTest()
         {//method for unit test to test connection (strange as that may seem!)
             DataTable dt = new DataTable();
             try
             {
-
                 using (da = new SqlDataAdapter("select * from Movies", Connection))
                 {
                     Connection.Open();
@@ -353,6 +380,7 @@ namespace MoviesAssessmentJane
                 return false;
             }
         }
+        
 
     }
 }

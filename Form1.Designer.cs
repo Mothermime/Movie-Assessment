@@ -31,6 +31,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.tabCustomers = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.tbxCustInstructions = new System.Windows.Forms.TextBox();
             this.lblCustID = new System.Windows.Forms.Label();
             this.dgvCustomer = new System.Windows.Forms.DataGridView();
             this.btnAddCustomer = new System.Windows.Forms.Button();
@@ -46,6 +47,7 @@
             this.lblPhone = new System.Windows.Forms.Label();
             this.tbxPhone = new System.Windows.Forms.TextBox();
             this.tabRentedMovies = new System.Windows.Forms.TabPage();
+            this.btnOverdue = new System.Windows.Forms.Button();
             this.lbxRMID = new System.Windows.Forms.Label();
             this.tbxRMID = new System.Windows.Forms.TextBox();
             this.btnAllMoviesIssued = new System.Windows.Forms.Button();
@@ -80,7 +82,10 @@
             this.btnReturn = new System.Windows.Forms.Button();
             this.tbxScreen = new System.Windows.Forms.TextBox();
             this.lbxScreen = new System.Windows.Forms.ListBox();
-            this.tbxCustInstructions = new System.Windows.Forms.TextBox();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.lblIssueInst = new System.Windows.Forms.Label();
+            this.lblReturnInst = new System.Windows.Forms.Label();
             this.tabCustomers.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvCustomer)).BeginInit();
@@ -129,6 +134,17 @@
             this.tabPage1.Text = "Customers";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
+            // tbxCustInstructions
+            // 
+            this.tbxCustInstructions.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbxCustInstructions.Location = new System.Drawing.Point(0, 389);
+            this.tbxCustInstructions.Multiline = true;
+            this.tbxCustInstructions.Name = "tbxCustInstructions";
+            this.tbxCustInstructions.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.tbxCustInstructions.Size = new System.Drawing.Size(421, 56);
+            this.tbxCustInstructions.TabIndex = 39;
+            this.tbxCustInstructions.Text = resources.GetString("tbxCustInstructions.Text");
+            // 
             // lblCustID
             // 
             this.lblCustID.AutoSize = true;
@@ -162,7 +178,7 @@
             // btnUpdateCust
             // 
             this.btnUpdateCust.BackColor = System.Drawing.Color.Orange;
-            this.btnUpdateCust.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnUpdateCust.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnUpdateCust.Location = new System.Drawing.Point(104, 449);
             this.btnUpdateCust.Name = "btnUpdateCust";
             this.btnUpdateCust.Size = new System.Drawing.Size(92, 49);
@@ -174,7 +190,7 @@
             // btnDeleteCust
             // 
             this.btnDeleteCust.BackColor = System.Drawing.Color.Red;
-            this.btnDeleteCust.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnDeleteCust.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnDeleteCust.Location = new System.Drawing.Point(202, 449);
             this.btnDeleteCust.Name = "btnDeleteCust";
             this.btnDeleteCust.Size = new System.Drawing.Size(92, 47);
@@ -256,6 +272,7 @@
             // 
             // tabRentedMovies
             // 
+            this.tabRentedMovies.Controls.Add(this.btnOverdue);
             this.tabRentedMovies.Controls.Add(this.lbxRMID);
             this.tabRentedMovies.Controls.Add(this.tbxRMID);
             this.tabRentedMovies.Controls.Add(this.btnAllMoviesIssued);
@@ -268,6 +285,18 @@
             this.tabRentedMovies.TabIndex = 1;
             this.tabRentedMovies.Text = "Rented Movies";
             this.tabRentedMovies.UseVisualStyleBackColor = true;
+            // 
+            // btnOverdue
+            // 
+            this.btnOverdue.BackColor = System.Drawing.Color.Red;
+            this.btnOverdue.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnOverdue.Location = new System.Drawing.Point(106, 424);
+            this.btnOverdue.Name = "btnOverdue";
+            this.btnOverdue.Size = new System.Drawing.Size(133, 74);
+            this.btnOverdue.TabIndex = 5;
+            this.btnOverdue.Text = "Show Overdue Movies";
+            this.btnOverdue.UseVisualStyleBackColor = false;
+            this.btnOverdue.Click += new System.EventHandler(this.btnOverdue_Click);
             // 
             // lbxRMID
             // 
@@ -287,9 +316,9 @@
             // 
             // btnAllMoviesIssued
             // 
-            this.btnAllMoviesIssued.BackColor = System.Drawing.Color.Orange;
-            this.btnAllMoviesIssued.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAllMoviesIssued.Location = new System.Drawing.Point(405, 425);
+            this.btnAllMoviesIssued.BackColor = System.Drawing.Color.ForestGreen;
+            this.btnAllMoviesIssued.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAllMoviesIssued.Location = new System.Drawing.Point(484, 425);
             this.btnAllMoviesIssued.Name = "btnAllMoviesIssued";
             this.btnAllMoviesIssued.Size = new System.Drawing.Size(115, 75);
             this.btnAllMoviesIssued.TabIndex = 2;
@@ -299,11 +328,11 @@
             // 
             // btnMoviesOut
             // 
-            this.btnMoviesOut.BackColor = System.Drawing.Color.Red;
-            this.btnMoviesOut.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnMoviesOut.Location = new System.Drawing.Point(163, 423);
+            this.btnMoviesOut.BackColor = System.Drawing.Color.Orange;
+            this.btnMoviesOut.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnMoviesOut.Location = new System.Drawing.Point(290, 425);
             this.btnMoviesOut.Name = "btnMoviesOut";
-            this.btnMoviesOut.Size = new System.Drawing.Size(169, 75);
+            this.btnMoviesOut.Size = new System.Drawing.Size(133, 75);
             this.btnMoviesOut.TabIndex = 1;
             this.btnMoviesOut.Text = "Show Movies Still Out";
             this.btnMoviesOut.UseVisualStyleBackColor = false;
@@ -388,7 +417,7 @@
             // btnUpdateMovie
             // 
             this.btnUpdateMovie.BackColor = System.Drawing.Color.Orange;
-            this.btnUpdateMovie.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnUpdateMovie.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnUpdateMovie.Location = new System.Drawing.Point(101, 441);
             this.btnUpdateMovie.Name = "btnUpdateMovie";
             this.btnUpdateMovie.Size = new System.Drawing.Size(92, 60);
@@ -400,7 +429,7 @@
             // btnDelMovie
             // 
             this.btnDelMovie.BackColor = System.Drawing.Color.Red;
-            this.btnDelMovie.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnDelMovie.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnDelMovie.Location = new System.Drawing.Point(199, 441);
             this.btnDelMovie.Name = "btnDelMovie";
             this.btnDelMovie.Size = new System.Drawing.Size(92, 60);
@@ -573,7 +602,7 @@
             // 
             this.btnIssue.BackColor = System.Drawing.Color.ForestGreen;
             this.btnIssue.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnIssue.Location = new System.Drawing.Point(162, 581);
+            this.btnIssue.Location = new System.Drawing.Point(245, 581);
             this.btnIssue.Name = "btnIssue";
             this.btnIssue.Size = new System.Drawing.Size(111, 96);
             this.btnIssue.TabIndex = 34;
@@ -585,7 +614,7 @@
             // 
             this.btnReturn.BackColor = System.Drawing.Color.Red;
             this.btnReturn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnReturn.Location = new System.Drawing.Point(373, 581);
+            this.btnReturn.Location = new System.Drawing.Point(518, 581);
             this.btnReturn.Name = "btnReturn";
             this.btnReturn.Size = new System.Drawing.Size(111, 96);
             this.btnReturn.TabIndex = 35;
@@ -619,16 +648,39 @@
             this.lbxScreen.TabStop = false;
             this.lbxScreen.Visible = false;
             // 
-            // tbxCustInstructions
+            // textBox1
             // 
-            this.tbxCustInstructions.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbxCustInstructions.Location = new System.Drawing.Point(0, 389);
-            this.tbxCustInstructions.Multiline = true;
-            this.tbxCustInstructions.Name = "tbxCustInstructions";
-            this.tbxCustInstructions.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.tbxCustInstructions.Size = new System.Drawing.Size(421, 56);
-            this.tbxCustInstructions.TabIndex = 39;
-            this.tbxCustInstructions.Text = resources.GetString("tbxCustInstructions.Text");
+            this.textBox1.Location = new System.Drawing.Point(0, 0);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(100, 20);
+            this.textBox1.TabIndex = 38;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(8, 8);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(35, 13);
+            this.label1.TabIndex = 39;
+            this.label1.Text = "label1";
+            // 
+            // lblIssueInst
+            // 
+            this.lblIssueInst.Location = new System.Drawing.Point(96, 581);
+            this.lblIssueInst.Name = "lblIssueInst";
+            this.lblIssueInst.Size = new System.Drawing.Size(142, 67);
+            this.lblIssueInst.TabIndex = 40;
+            this.lblIssueInst.Text = "To issue a movie:  Please select a customer from Customer tab, and a movie from M" +
+    "ovie tab then click the Issue Movie button";
+            // 
+            // lblReturnInst
+            // 
+            this.lblReturnInst.Location = new System.Drawing.Point(383, 583);
+            this.lblReturnInst.Name = "lblReturnInst";
+            this.lblReturnInst.Size = new System.Drawing.Size(129, 65);
+            this.lblReturnInst.TabIndex = 41;
+            this.lblReturnInst.Text = "To return a movie:  Please select movie to be returned from Rented Movies tab the" +
+    "n click on Return Movie button.";
             // 
             // Form1
             // 
@@ -636,6 +688,10 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(1335, 711);
+            this.Controls.Add(this.lblReturnInst);
+            this.Controls.Add(this.lblIssueInst);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.textBox1);
             this.Controls.Add(this.lbxScreen);
             this.Controls.Add(this.tabCustomers);
             this.Controls.Add(this.btnReturn);
@@ -716,6 +772,11 @@
         private System.Windows.Forms.TextBox tbxMovieInstructions;
         private System.Windows.Forms.Label lblMovieID;
         private System.Windows.Forms.TextBox tbxCustInstructions;
+        private System.Windows.Forms.Button btnOverdue;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lblIssueInst;
+        private System.Windows.Forms.Label lblReturnInst;
     }
 }
 
